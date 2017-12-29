@@ -13,85 +13,60 @@
 
 
         <div>
-            Nennmass [mm]:
-            <input v-model.number.lazy="fit.basicSize">
+            <h2>Nennmass</h2>
+            <div class="flex">
+                <icon-average></icon-average>
+                <input v-model.number.lazy="fit.basicSize" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4">
+                <span>mm</span>
+            </div>
         </div>
 
         <div>
-            <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <g transform="translate(-343 24)">
-                    <clipPath id="a" clip-rule="evenodd">
-                    <path d="M343-24h100V76H343V-24z" fill="#FFF"/>
-                    </clipPath>
-                    <g clip-path="url(#a)">
-                    <path d="M343-24h100V76H343V-24z" fill="#FFF"/>
-                    <use xlink:href="#path0_fill" transform="translate(343 -24)" stroke="black" fill="#DAE1E7"/>
-                    <use xlink:href="#path1_fill" transform="translate(368 1)" stroke="black" fill="#BCDEFA"/>
-                    </g>
-                </g>
-                <defs>
-                    <path id="path0_fill" d="M0 0h100v100H0V0z"/>
-                    <path id="path1_fill" d="M49 24.5C49 38.031 38.031 49 24.5 49S0 38.031 0 24.5 10.969 0 24.5 0 49 10.969 49 24.5z"/>
-                </defs>
-            </svg>
-            <b>Bohrung:</b> 
-            <select v-on:change="updateHole" v-model="selectedHole">
-                <option v-for="(item, index) in isoTolerances.hole" v-bind:value="index">
-                    {{ index }}
-                </option>
-            </select><br>
-            Oberes Abmass
-            <input v-model.number.lazy="fit.hole.upperDeviation"><br>
-            Unteres Abmass
-            <input v-model.number.lazy="fit.hole.lowerDeviation">
+            <h2>Bohrung</h2> 
+            <div class="flex">
+                <icon-hole></icon-hole>
+                <div>
+                    <div class="relative">
+                        <select v-on:change="updateHole" v-model="selectedHole" class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded">
+                            <option v-for="(item, index) in isoTolerances.hole" v-bind:value="index">
+                                {{ index }}
+                            </option>
+                        </select>
+                        <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                    Oberes Abmass
+                    <input v-model.number.lazy="fit.hole.upperDeviation"><br>
+                    Unteres Abmass
+                    <input v-model.number.lazy="fit.hole.lowerDeviation">
+                </div>
+            </div>
         </div>
         <div>
-            <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <g transform="translate(-483 24)">
-                    <clipPath id="b" clip-rule="evenodd">
-                    <path d="M483-24h100V76H483V-24z" fill="#FFF"/>
-                    </clipPath>
-                    <g clip-path="url(#b)">
-                    <path d="M483-24h100V76H483V-24z" fill="#FFF"/>
-                    <use xlink:href="#path2_fill" transform="translate(458 1)" stroke="black" fill="#B2B7FF"/>
-                    <use xlink:href="#path5_fill" transform="translate(533 1)" stroke="black" fill="#DAE1E7"/>
-                    </g>
-                </g>
-                <defs>
-                    <path id="path2_fill" d="M0 0h100v49H0V0z"/>
-                    <path id="path5_fill" d="M49 24.5C49 38.031 38.031 49 24.5 49S0 38.031 0 24.5 10.969 0 24.5 0 49 10.969 49 24.5z"/>
-                </defs>
-            </svg>
-            <b>Welle:</b> 
-            <select v-on:change="updateShaft" v-model="selectedShaft">
-                <option v-for="(item, index) in isoTolerances.shaft" v-bind:value="index">
-                    {{ index }}
-                </option>
-            </select><br>
-            Oberes Abmass
-            <input v-model.number.lazy="fit.shaft.upperDeviation"><br>
-            Unteres Abmass
-            <input v-model.number.lazy="fit.shaft.lowerDeviation">
+            <h2>Welle</h2> 
+            <div class="flex">
+                <icon-shaft></icon-shaft>
+                <div>
+                    <div class="relative">
+                        <select v-on:change="updateShaft" v-model="selectedShaft" class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded">
+                            <option v-for="(item, index) in isoTolerances.shaft" v-bind:value="index">
+                                {{ index }}
+                            </option>
+                        </select>
+                        <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                    Oberes Abmass
+                    <input v-model.number.lazy="fit.shaft.upperDeviation"><br>
+                    Unteres Abmass
+                    <input v-model.number.lazy="fit.shaft.lowerDeviation">
+                </div>
+            </div>
         </div>
 
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 15 15">
-            <g id="Canvas" transform="translate(-142 84)">
-              <g id="Ellipse">
-                <mask id="mask0_outline_ins">
-                  <use fill="#fff" transform="translate(142 -84)" xlink:href="#pd0"/>
-                </mask>
-                <g mask="url(#mask0_outline_ins)">
-                  <use transform="translate(142 -84)" xlink:href="#path1_stroke_2x"/>
-                </g>
-              </g>
-              <use id="Rectangle" transform="rotate(-45 -15.033 -207.045)" xlink:href="#pf2"/>
-            </g>
-            <defs>
-              <path id="pd0" d="M14 7A7 7 0 1 1 0 7a7 7 0 0 1 14 0z"/>
-              <path id="path1_stroke_2x" d="M12 7a5 5 0 0 1-5 5v4a9 9 0 0 0 9-9h-4zm-5 5a5 5 0 0 1-5-5h-4a9 9 0 0 0 9 9v-4zM2 7a5 5 0 0 1 5-5v-4a9 9 0 0 0-9 9h4zm5-5a5 5 0 0 1 5 5h4a9 9 0 0 0-9-9v4z"/>
-              <path id="pf2" d="M0 0h18v2H0V0z"/>
-            </defs>
-        </svg>
+ 
 
         <fit-type :fit="fit"></fit-type>
         <illustration :fit="fit"></illustration>

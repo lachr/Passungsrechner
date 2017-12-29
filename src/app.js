@@ -3,6 +3,10 @@ window.Vue = require('vue');
 Vue.component('illustration', require('./illustration.vue'));
 Vue.component('fitType', require('./fitType.vue'));
 
+Vue.component('icon-average', require('./icon-average.vue'));
+Vue.component('icon-hole', require('./icon-hole.vue'));
+Vue.component('icon-shaft', require('./icon-shaft.vue'));
+
 import isoTolerances from './tolerances.json';
 
 const app = new Vue({
