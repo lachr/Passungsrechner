@@ -9,47 +9,53 @@
 </head>
 <body>
     <div id="app">
-        <h1>Passungsrechner</h1>
+        <h1 class="mt-2 px-4">Passungsrechner</h1>
+        <h2 class="mb-6 px-4 text-grey-dark">nach ISO 286</h2>
 
-
-        <div>
-            <h2>Nennmass</h2>
-            <div class="flex">
-                <icon-average></icon-average>
-                <input v-model.number.lazy="fit.basicSize" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4">
-                <span>mm</span>
+        <div class="mb-4 px-4">
+            <h2 class="mb-2 text-base font-bold">Nennmass</h2>
+            <div class="flex items-center">
+                <icon-average class="w-1/6"></icon-average>
+                <div class="relative w-5/6">
+                    <input v-model.number.lazy="fit.basicSize" class="appearance-none block w-full bg-white text-black border border-grey py-2 px-2 pr-8">
+                    <span class="absolute pin-y pin-r flex items-center px-2 text-grey-darker">mm</span>
+                </div>
             </div>
+            <div class="pt-2 text-grey-dark">Die Toleranzen sind bis zu einem Nennmass von 400mm definiert.</div>
         </div>
 
-        <div>
-            <h2>Bohrung</h2> 
+        <div class="mb-4 px-4">
+            <h2 class="mb-2 text-base font-bold">Bohrung</h2> 
             <div class="flex">
-                <icon-hole></icon-hole>
-                <div>
+                <icon-hole class="w-1/6"></icon-hole>
+                <div class="w-5/6">
                     <div class="relative">
-                        <select v-on:change="updateHole" v-model="selectedHole" class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded">
+                        <select v-on:change="updateHole" v-model="selectedHole" class="block appearance-none bg-white border border-grey text-black w-full py-2 px-2 pr-8 rounded-none">
                             <option v-for="(item, index) in isoTolerances.hole" v-bind:value="index">
                                 {{ index }}
                             </option>
                         </select>
-                        <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                        <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-black">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                         </div>
                     </div>
-                    Oberes Abmass
-                    <input v-model.number.lazy="fit.hole.upperDeviation"><br>
-                    Unteres Abmass
-                    <input v-model.number.lazy="fit.hole.lowerDeviation">
+                    <div class="flex item-center pt-2">
+                        <div class="text-2xl pr-2 pt-2">{{ fit.basicSize }}</div>
+                        <div>
+                            <input v-model.number.lazy="fit.hole.upperDeviation"><br>
+                            <input v-model.number.lazy="fit.hole.lowerDeviation">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div>
-            <h2>Welle</h2> 
+        <div class="mb-4 px-4">
+            <h2 class="mb-2 text-base font-bold">Welle</h2> 
             <div class="flex">
-                <icon-shaft></icon-shaft>
-                <div>
+                <icon-shaft class="w-1/6"></icon-shaft>
+                <div class="w-5/6">
                     <div class="relative">
-                        <select v-on:change="updateShaft" v-model="selectedShaft" class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded">
+                        <select v-on:change="updateShaft" v-model="selectedShaft" class="block appearance-none w-full bg-white border border-grey text-black py-2 px-2 pr-8 rounded-none">
                             <option v-for="(item, index) in isoTolerances.shaft" v-bind:value="index">
                                 {{ index }}
                             </option>
@@ -58,18 +64,21 @@
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                         </div>
                     </div>
-                    Oberes Abmass
-                    <input v-model.number.lazy="fit.shaft.upperDeviation"><br>
-                    Unteres Abmass
-                    <input v-model.number.lazy="fit.shaft.lowerDeviation">
+                    <div class="flex item-center pt-2">
+                            <div class="text-2xl pr-2 pt-2">{{ fit.basicSize }}</div>
+                            <div>
+                                <input v-model.number.lazy="fit.shaft.upperDeviation"><br>
+                                <input v-model.number.lazy="fit.shaft.lowerDeviation">
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
-
  
-
-        <fit-type :fit="fit"></fit-type>
-        <illustration :fit="fit"></illustration>
+        <div class="flex bg-grey-darkest text-white p-4">
+            <fit-type class="w-1/2" :fit="fit"></fit-type>
+            <illustration class="w-1/2" :fit="fit"></illustration>
+        </div>
             
 
     </div>

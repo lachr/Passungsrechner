@@ -1,17 +1,17 @@
 <template>
 
 <div>
-    <svg :width="width" :height="height">
+    <svg :width="width" :height="height" class="mb-2">
         <rect :x="width*0.1" :y="holeTopY" :width="width*0.4" :height="holeHeight" fill="#BCDEFA" />
         <rect :x="width*0.5" :y="shaftTopY" :width="width*0.4" :height="shaftHeight" fill="#B2B7FF" />
         <line x1="0" :y1="height*0.5" :x2="width" :y2="height*0.5" style="stroke:#22292F;stroke-width:2" />
     </svg>
 
-    <svg width="160" height="50">
+    <svg width="180" height="50">
         <rect x="0" y="0" width="15" height="15" fill="#BCDEFA" />
-        <text x="20" y="15" fill="#22292F" font-size="15">Toleranzfeld Bohrung</text>
+        <text x="20" y="15" fill="#FFF" font-size="15">Toleranzfeld Bohrung</text>
         <rect x="0" y="30" width="15" height="15" fill="#B2B7FF" />
-        <text x="20" y="45" fill="#22292F" font-size="15">Toleranzfeld Welle</text>
+        <text x="20" y="45" fill="#FFF" font-size="15">Toleranzfeld Welle</text>
     </svg>
 </div>
 

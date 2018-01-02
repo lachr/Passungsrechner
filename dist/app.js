@@ -67,33 +67,6 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
 /* globals __VUE_SSR_CONTEXT__ */
 
 // IMPORTANT: Do NOT use ES2015 features in this file.
@@ -200,11 +173,38 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
-module.exports = __webpack_require__(15);
+module.exports = __webpack_require__(21);
 
 
 /***/ }),
@@ -213,16 +213,16 @@ module.exports = __webpack_require__(15);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tolerances_json__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tolerances_json__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tolerances_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__tolerances_json__);
 window.Vue = __webpack_require__(4);
 
 Vue.component('illustration', __webpack_require__(8));
 Vue.component('fitType', __webpack_require__(11));
 
-Vue.component('icon-average', __webpack_require__(20));
-Vue.component('icon-hole', __webpack_require__(22));
-Vue.component('icon-shaft', __webpack_require__(24));
+Vue.component('icon-average', __webpack_require__(14));
+Vue.component('icon-hole', __webpack_require__(16));
+Vue.component('icon-shaft', __webpack_require__(18));
 
 
 
@@ -11082,7 +11082,7 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(5).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(5).setImmediate))
 
 /***/ }),
 /* 5 */
@@ -11334,7 +11334,7 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(7)))
 
 /***/ }),
 /* 7 */
@@ -11531,7 +11531,7 @@ process.umask = function() { return 0; };
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(1)
+var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(9)
 /* template */
@@ -11641,46 +11641,50 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("svg", { attrs: { width: _vm.width, height: _vm.height } }, [
-      _c("rect", {
-        attrs: {
-          x: _vm.width * 0.1,
-          y: _vm.holeTopY,
-          width: _vm.width * 0.4,
-          height: _vm.holeHeight,
-          fill: "#BCDEFA"
-        }
-      }),
-      _vm._v(" "),
-      _c("rect", {
-        attrs: {
-          x: _vm.width * 0.5,
-          y: _vm.shaftTopY,
-          width: _vm.width * 0.4,
-          height: _vm.shaftHeight,
-          fill: "#B2B7FF"
-        }
-      }),
-      _vm._v(" "),
-      _c("line", {
-        staticStyle: { stroke: "#22292F", "stroke-width": "2" },
-        attrs: {
-          x1: "0",
-          y1: _vm.height * 0.5,
-          x2: _vm.width,
-          y2: _vm.height * 0.5
-        }
-      })
-    ]),
+    _c(
+      "svg",
+      { staticClass: "mb-2", attrs: { width: _vm.width, height: _vm.height } },
+      [
+        _c("rect", {
+          attrs: {
+            x: _vm.width * 0.1,
+            y: _vm.holeTopY,
+            width: _vm.width * 0.4,
+            height: _vm.holeHeight,
+            fill: "#BCDEFA"
+          }
+        }),
+        _vm._v(" "),
+        _c("rect", {
+          attrs: {
+            x: _vm.width * 0.5,
+            y: _vm.shaftTopY,
+            width: _vm.width * 0.4,
+            height: _vm.shaftHeight,
+            fill: "#B2B7FF"
+          }
+        }),
+        _vm._v(" "),
+        _c("line", {
+          staticStyle: { stroke: "#22292F", "stroke-width": "2" },
+          attrs: {
+            x1: "0",
+            y1: _vm.height * 0.5,
+            x2: _vm.width,
+            y2: _vm.height * 0.5
+          }
+        })
+      ]
+    ),
     _vm._v(" "),
-    _c("svg", { attrs: { width: "160", height: "50" } }, [
+    _c("svg", { attrs: { width: "180", height: "50" } }, [
       _c("rect", {
         attrs: { x: "0", y: "0", width: "15", height: "15", fill: "#BCDEFA" }
       }),
       _vm._v(" "),
       _c(
         "text",
-        { attrs: { x: "20", y: "15", fill: "#22292F", "font-size": "15" } },
+        { attrs: { x: "20", y: "15", fill: "#FFF", "font-size": "15" } },
         [_vm._v("Toleranzfeld Bohrung")]
       ),
       _vm._v(" "),
@@ -11690,7 +11694,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "text",
-        { attrs: { x: "20", y: "45", fill: "#22292F", "font-size": "15" } },
+        { attrs: { x: "20", y: "45", fill: "#FFF", "font-size": "15" } },
         [_vm._v("Toleranzfeld Welle")]
       )
     ])
@@ -11711,7 +11715,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(1)
+var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(12)
 /* template */
@@ -11783,6 +11787,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['fit'],
@@ -11816,45 +11827,79 @@ var render = function() {
   return _c("div", [
     _vm.fitType == "clearance"
       ? _c("div", [
-          _vm._v("\n        Spielpassung"),
-          _c("br"),
-          _vm._v("\n        maximales Spiel: " + _vm._s(Math.abs(_vm.maxDiff))),
-          _c("br"),
-          _vm._v(
-            "\n        minimales Spiel: " +
-              _vm._s(Math.abs(_vm.minDiff)) +
-              "\n    "
-          )
+          _c("div", { staticClass: "text-lg" }, [_vm._v("Spielpassung")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-sm text-grey-light mb-4" }, [
+            _vm._v("Passungsart")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-lg" }, [
+            _vm._v(_vm._s(Math.abs(_vm.maxDiff)) + " mm")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-sm text-grey-light mb-4" }, [
+            _vm._v("max. Spiel")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-lg" }, [
+            _vm._v(_vm._s(Math.abs(_vm.minDiff)) + " mm")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-sm text-grey-light" }, [
+            _vm._v("min. Spiel")
+          ])
         ])
       : _vm._e(),
     _vm._v(" "),
     _vm.fitType == "transition"
-      ? _c("div", [
-          _vm._v("\n        Presspassung"),
-          _c("br"),
-          _vm._v(
-            "\n        maximales Übermass: " + _vm._s(Math.abs(_vm.maxDiff))
-          ),
-          _c("br"),
-          _vm._v(
-            "\n        minimales Übermass: " +
-              _vm._s(Math.abs(_vm.minDiff)) +
-              "\n    "
-          )
+      ? _c("div", { staticClass: "text-lg" }, [
+          _c("div", { staticClass: "text-lg" }, [_vm._v("Presspassung")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-sm text-grey-light mb-4" }, [
+            _vm._v("Passungsart")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-lg" }, [
+            _vm._v(_vm._s(Math.abs(_vm.maxDiff)) + " mm")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-sm text-grey-light mb-4" }, [
+            _vm._v("max. Übermass")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-lg" }, [
+            _vm._v(_vm._s(Math.abs(_vm.minDiff)) + " mm")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-sm text-grey-light" }, [
+            _vm._v("min. Übermass")
+          ])
         ])
       : _vm._e(),
     _vm._v(" "),
     _vm.fitType == "interference"
-      ? _c("div", [
-          _vm._v("\n        Übergangspassung"),
-          _c("br"),
-          _vm._v("\n        Maximales Spiel: " + _vm._s(Math.abs(_vm.maxDiff))),
-          _c("br"),
-          _vm._v(
-            "\n        Maximales Übermass: " +
-              _vm._s(Math.abs(_vm.minDiff)) +
-              "\n    "
-          )
+      ? _c("div", { staticClass: "text-lg" }, [
+          _c("div", { staticClass: "text-lg" }, [_vm._v("Übergangspassung")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-sm text-grey-light mb-4" }, [
+            _vm._v("Passungsart")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-lg" }, [
+            _vm._v(_vm._s(Math.abs(_vm.maxDiff)) + " mm")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-sm text-grey-light mb-4" }, [
+            _vm._v("max. Spiel")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-lg" }, [
+            _vm._v(_vm._s(Math.abs(_vm.minDiff)) + " mm")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-sm text-grey-light" }, [
+            _vm._v("max. Übermass")
+          ])
         ])
       : _vm._e()
   ])
@@ -11871,30 +11916,14 @@ if (false) {
 
 /***/ }),
 /* 14 */
-/***/ (function(module, exports) {
-
-module.exports = {"hole":{"D10":{"3":{"upper":60,"lower":20},"6":{"upper":78,"lower":30},"10":{"upper":98,"lower":40},"18":{"upper":120,"lower":50},"30":{"upper":149,"lower":65},"50":{"upper":180,"lower":80},"65":{"upper":220,"lower":100},"80":{"upper":220,"lower":100},"100":{"upper":260,"lower":120},"120":{"upper":260,"lower":120},"140":{"upper":305,"lower":145},"160":{"upper":305,"lower":145},"180":{"upper":305,"lower":145},"200":{"upper":335,"lower":170},"225":{"upper":335,"lower":170},"250":{"upper":335,"lower":170},"280":{"upper":400,"lower":190},"315":{"upper":400,"lower":190},"355":{"upper":440,"lower":210},"400":{"upper":440,"lower":210}},"E9":{"3":{"upper":39,"lower":14},"6":{"upper":50,"lower":20},"10":{"upper":61,"lower":25},"18":{"upper":75,"lower":32},"30":{"upper":92,"lower":40},"50":{"upper":112,"lower":50},"65":{"upper":134,"lower":60},"80":{"upper":134,"lower":60},"100":{"upper":159,"lower":72},"120":{"upper":159,"lower":72},"140":{"upper":185,"lower":85},"160":{"upper":185,"lower":85},"180":{"upper":185,"lower":85},"200":{"upper":215,"lower":110},"225":{"upper":215,"lower":110},"250":{"upper":215,"lower":110},"280":{"upper":240,"lower":110},"315":{"upper":240,"lower":110},"355":{"upper":265,"lower":125},"400":{"upper":265,"lower":125}},"F7":{"3":{"upper":16,"lower":6},"6":{"upper":22,"lower":10},"10":{"upper":28,"lower":13},"18":{"upper":34,"lower":16},"30":{"upper":41,"lower":20},"50":{"upper":50,"lower":25},"65":{"upper":60,"lower":30},"80":{"upper":60,"lower":30},"100":{"upper":71,"lower":36},"120":{"upper":71,"lower":36},"140":{"upper":83,"lower":43},"160":{"upper":83,"lower":43},"180":{"upper":83,"lower":43},"200":{"upper":96,"lower":50},"225":{"upper":96,"lower":50},"250":{"upper":96,"lower":50},"280":{"upper":108,"lower":56},"315":{"upper":108,"lower":56},"355":{"upper":119,"lower":62},"400":{"upper":119,"lower":62}},"F8":{"3":{"upper":20,"lower":10},"6":{"upper":28,"lower":10},"10":{"upper":35,"lower":13},"18":{"upper":43,"lower":16},"30":{"upper":53,"lower":20},"50":{"upper":64,"lower":25},"65":{"upper":76,"lower":30},"80":{"upper":76,"lower":30},"100":{"upper":90,"lower":36},"120":{"upper":90,"lower":36},"140":{"upper":106,"lower":43},"160":{"upper":106,"lower":43},"180":{"upper":106,"lower":43},"200":{"upper":122,"lower":50},"225":{"upper":122,"lower":50},"250":{"upper":122,"lower":50},"280":{"upper":137,"lower":56},"315":{"upper":137,"lower":56},"355":{"upper":151,"lower":62},"400":{"upper":151,"lower":62}},"G7":{"3":{"upper":12,"lower":2},"6":{"upper":16,"lower":4},"10":{"upper":20,"lower":5},"18":{"upper":24,"lower":6},"30":{"upper":28,"lower":7},"50":{"upper":34,"lower":9},"65":{"upper":40,"lower":10},"80":{"upper":40,"lower":10},"100":{"upper":47,"lower":12},"120":{"upper":47,"lower":12},"140":{"upper":54,"lower":14},"160":{"upper":54,"lower":14},"180":{"upper":54,"lower":14},"200":{"upper":61,"lower":15},"225":{"upper":61,"lower":15},"250":{"upper":61,"lower":15},"280":{"upper":69,"lower":17},"315":{"upper":69,"lower":17},"355":{"upper":75,"lower":18},"400":{"upper":75,"lower":18}},"G9":{"3":{"upper":27,"lower":2},"6":{"upper":34,"lower":4},"10":{"upper":41,"lower":5},"18":{"upper":49,"lower":6},"30":{"upper":59,"lower":7},"50":{"upper":71,"lower":9},"65":{"upper":0,"lower":0},"80":{"upper":0,"lower":0},"100":{"upper":0,"lower":0},"120":{"upper":0,"lower":0},"140":{"upper":0,"lower":0},"160":{"upper":-50,"lower":-90},"180":{"upper":-53,"lower":-93},"200":{"upper":0,"lower":0},"225":{"upper":-63,"lower":-109},"250":{"upper":-67,"lower":-113},"280":{"upper":0,"lower":0},"315":{"upper":-78,"lower":-130},"355":{"upper":0,"lower":0},"400":{"upper":-93,"lower":-150}},"H6":{"3":{"upper":6,"lower":0},"6":{"upper":8,"lower":0},"10":{"upper":9,"lower":0},"18":{"upper":11,"lower":0},"30":{"upper":13,"lower":0},"50":{"upper":16,"lower":0},"65":{"upper":19,"lower":0},"80":{"upper":19,"lower":0},"100":{"upper":22,"lower":0},"120":{"upper":22,"lower":0},"140":{"upper":25,"lower":0},"160":{"upper":25,"lower":0},"180":{"upper":25,"lower":0},"200":{"upper":29,"lower":0},"225":{"upper":29,"lower":0},"250":{"upper":29,"lower":0},"280":{"upper":32,"lower":0},"315":{"upper":32,"lower":0},"355":{"upper":36,"lower":0},"400":{"upper":36,"lower":0}},"H7":{"3":{"upper":10,"lower":0},"6":{"upper":12,"lower":0},"10":{"upper":15,"lower":0},"18":{"upper":18,"lower":0},"30":{"upper":21,"lower":0},"50":{"upper":25,"lower":0},"65":{"upper":30,"lower":0},"80":{"upper":30,"lower":0},"100":{"upper":35,"lower":0},"120":{"upper":35,"lower":0},"140":{"upper":40,"lower":0},"160":{"upper":40,"lower":0},"180":{"upper":40,"lower":0},"200":{"upper":46,"lower":0},"225":{"upper":46,"lower":0},"250":{"upper":46,"lower":0},"280":{"upper":52,"lower":0},"315":{"upper":52,"lower":0},"355":{"upper":57,"lower":0},"400":{"upper":57,"lower":0}},"H8":{"3":{"upper":14,"lower":0},"6":{"upper":18,"lower":0},"10":{"upper":22,"lower":0},"18":{"upper":27,"lower":0},"30":{"upper":33,"lower":0},"50":{"upper":39,"lower":0},"65":{"upper":46,"lower":0},"80":{"upper":46,"lower":0},"100":{"upper":54,"lower":0},"120":{"upper":54,"lower":0},"140":{"upper":63,"lower":0},"160":{"upper":63,"lower":0},"180":{"upper":63,"lower":0},"200":{"upper":72,"lower":0},"225":{"upper":72,"lower":0},"250":{"upper":72,"lower":0},"280":{"upper":81,"lower":0},"315":{"upper":81,"lower":0},"355":{"upper":89,"lower":0},"400":{"upper":89,"lower":0}},"H9":{"3":{"upper":25,"lower":0},"6":{"upper":30,"lower":0},"10":{"upper":36,"lower":0},"18":{"upper":43,"lower":0},"30":{"upper":52,"lower":0},"50":{"upper":62,"lower":0},"65":{"upper":74,"lower":0},"80":{"upper":74,"lower":0},"100":{"upper":87,"lower":0},"120":{"upper":87,"lower":0},"140":{"upper":100,"lower":0},"160":{"upper":100,"lower":0},"180":{"upper":100,"lower":0},"200":{"upper":115,"lower":0},"225":{"upper":115,"lower":0},"250":{"upper":115,"lower":0},"280":{"upper":130,"lower":0},"315":{"upper":130,"lower":0},"355":{"upper":140,"lower":0},"400":{"upper":140,"lower":0}},"H11":{"3":{"upper":60,"lower":0},"6":{"upper":75,"lower":0},"10":{"upper":90,"lower":0},"18":{"upper":110,"lower":0},"30":{"upper":130,"lower":0},"50":{"upper":160,"lower":0},"65":{"upper":190,"lower":0},"80":{"upper":190,"lower":0},"100":{"upper":220,"lower":0},"120":{"upper":220,"lower":0},"140":{"upper":250,"lower":0},"160":{"upper":250,"lower":0},"180":{"upper":250,"lower":0},"200":{"upper":290,"lower":0},"225":{"upper":290,"lower":0},"250":{"upper":290,"lower":0},"280":{"upper":320,"lower":0},"315":{"upper":320,"lower":0},"355":{"upper":360,"lower":0},"400":{"upper":360,"lower":0}},"H12":{"3":{"upper":100,"lower":0},"6":{"upper":120,"lower":0},"10":{"upper":150,"lower":0},"18":{"upper":180,"lower":0},"30":{"upper":210,"lower":0},"50":{"upper":250,"lower":0},"65":{"upper":300,"lower":0},"80":{"upper":300,"lower":0},"100":{"upper":350,"lower":0},"120":{"upper":350,"lower":0},"140":{"upper":400,"lower":0},"160":{"upper":400,"lower":0},"180":{"upper":400,"lower":0},"200":{"upper":460,"lower":0},"225":{"upper":460,"lower":0},"250":{"upper":460,"lower":0},"280":{"upper":520,"lower":0},"315":{"upper":520,"lower":0},"355":{"upper":570,"lower":0},"400":{"upper":570,"lower":0}},"H13":{"3":{"upper":140,"lower":0},"6":{"upper":180,"lower":0},"10":{"upper":220,"lower":0},"18":{"upper":270,"lower":0},"30":{"upper":330,"lower":0},"50":{"upper":390,"lower":0},"65":{"upper":460,"lower":0},"80":{"upper":460,"lower":0},"100":{"upper":540,"lower":0},"120":{"upper":540,"lower":0},"140":{"upper":630,"lower":0},"160":{"upper":630,"lower":0},"180":{"upper":630,"lower":0},"200":{"upper":720,"lower":0},"225":{"upper":720,"lower":0},"250":{"upper":720,"lower":0},"280":{"upper":810,"lower":0},"315":{"upper":810,"lower":0},"355":{"upper":890,"lower":0},"400":{"upper":890,"lower":0}},"JS7":{"3":{"upper":5,"lower":-5},"6":{"upper":6,"lower":-6},"10":{"upper":7.5,"lower":-7.5},"18":{"upper":9,"lower":-9},"30":{"upper":10.5,"lower":-10.5},"50":{"upper":12.5,"lower":-12.5},"65":{"upper":15,"lower":-15},"80":{"upper":15,"lower":-15},"100":{"upper":17.5,"lower":-17.5},"120":{"upper":17.5,"lower":-17.5},"140":{"upper":20,"lower":-20},"160":{"upper":20,"lower":-20},"180":{"upper":20,"lower":-20},"200":{"upper":23,"lower":-23},"225":{"upper":23,"lower":-23},"250":{"upper":23,"lower":-23},"280":{"upper":26,"lower":-26},"315":{"upper":26,"lower":-26},"355":{"upper":28.5,"lower":-28.5},"400":{"upper":28.5,"lower":-28.5}},"JS9":{"3":{"upper":12.5,"lower":-12.5},"6":{"upper":15,"lower":-15},"10":{"upper":18,"lower":-18},"18":{"upper":21.5,"lower":-21.5},"30":{"upper":26,"lower":-26},"50":{"upper":31,"lower":-31},"65":{"upper":37,"lower":-37},"80":{"upper":37,"lower":-37},"100":{"upper":43.5,"lower":-43.5},"120":{"upper":43.5,"lower":-43.5},"140":{"upper":50,"lower":-50},"160":{"upper":50,"lower":-50},"180":{"upper":50,"lower":-50},"200":{"upper":57.5,"lower":-57.5},"225":{"upper":57.5,"lower":-57.5},"250":{"upper":57.5,"lower":-57.5},"280":{"upper":65,"lower":-65},"315":{"upper":65,"lower":-65},"355":{"upper":70,"lower":-70},"400":{"upper":70,"lower":-70}},"K6":{"3":{"upper":0,"lower":-6},"6":{"upper":2,"lower":-6},"10":{"upper":2,"lower":-7},"18":{"upper":2,"lower":-9},"30":{"upper":2,"lower":-11},"50":{"upper":3,"lower":-13},"65":{"upper":4,"lower":-15},"80":{"upper":4,"lower":-15},"100":{"upper":4,"lower":-18},"120":{"upper":4,"lower":-18},"140":{"upper":4,"lower":-21},"160":{"upper":4,"lower":-21},"180":{"upper":4,"lower":-21},"200":{"upper":5,"lower":-24},"225":{"upper":5,"lower":-24},"250":{"upper":5,"lower":-24},"280":{"upper":5,"lower":-27},"315":{"upper":5,"lower":-27},"355":{"upper":7,"lower":-29},"400":{"upper":7,"lower":-29}},"K7":{"3":{"upper":0,"lower":-10},"6":{"upper":3,"lower":-9},"10":{"upper":5,"lower":-10},"18":{"upper":6,"lower":-12},"30":{"upper":6,"lower":-15},"50":{"upper":7,"lower":-18},"65":{"upper":9,"lower":-21},"80":{"upper":9,"lower":-21},"100":{"upper":10,"lower":-25},"120":{"upper":10,"lower":-25},"140":{"upper":12,"lower":-28},"160":{"upper":12,"lower":-28},"180":{"upper":12,"lower":-28},"200":{"upper":13,"lower":-33},"225":{"upper":13,"lower":-33},"250":{"upper":13,"lower":-33},"280":{"upper":16,"lower":-36},"315":{"upper":16,"lower":-36},"355":{"upper":17,"lower":-40},"400":{"upper":17,"lower":-40}},"M6":{"3":{"upper":-2,"lower":-8},"6":{"upper":-1,"lower":-9},"10":{"upper":-3,"lower":-12},"18":{"upper":-4,"lower":-15},"30":{"upper":-4,"lower":-17},"50":{"upper":-4,"lower":-20},"65":{"upper":-5,"lower":-24},"80":{"upper":-5,"lower":-24},"100":{"upper":-6,"lower":-28},"120":{"upper":-6,"lower":-28},"140":{"upper":-8,"lower":-33},"160":{"upper":-8,"lower":-33},"180":{"upper":-8,"lower":-33},"200":{"upper":-8,"lower":-37},"225":{"upper":-8,"lower":-37},"250":{"upper":-8,"lower":-37},"280":{"upper":-9,"lower":-41},"315":{"upper":-9,"lower":-41},"355":{"upper":-10,"lower":-46},"400":{"upper":-10,"lower":-46}},"M7":{"3":{"upper":-2,"lower":-12},"6":{"upper":0,"lower":-12},"10":{"upper":0,"lower":-15},"18":{"upper":0,"lower":-18},"30":{"upper":0,"lower":-21},"50":{"upper":0,"lower":-25},"65":{"upper":0,"lower":-30},"80":{"upper":0,"lower":-30},"100":{"upper":0,"lower":-35},"120":{"upper":0,"lower":-35},"140":{"upper":0,"lower":-40},"160":{"upper":0,"lower":-40},"180":{"upper":0,"lower":-40},"200":{"upper":0,"lower":-46},"225":{"upper":0,"lower":-46},"250":{"upper":0,"lower":-46},"280":{"upper":0,"lower":-52},"315":{"upper":0,"lower":-52},"355":{"upper":0,"lower":-57},"400":{"upper":0,"lower":-57}},"N7":{"3":{"upper":-4,"lower":-14},"6":{"upper":-4,"lower":-16},"10":{"upper":-4,"lower":-19},"18":{"upper":-5,"lower":-23},"30":{"upper":-7,"lower":-28},"50":{"upper":-8,"lower":-33},"65":{"upper":-9,"lower":-39},"80":{"upper":-9,"lower":-39},"100":{"upper":-10,"lower":-45},"120":{"upper":-10,"lower":-45},"140":{"upper":-12,"lower":-52},"160":{"upper":-12,"lower":-52},"180":{"upper":-12,"lower":-52},"200":{"upper":-14,"lower":-60},"225":{"upper":-14,"lower":-60},"250":{"upper":-14,"lower":-60},"280":{"upper":-14,"lower":-66},"315":{"upper":-14,"lower":-66},"355":{"upper":-16,"lower":-73},"400":{"upper":-16,"lower":-73}},"N9":{"3":{"upper":-4,"lower":-29},"6":{"upper":0,"lower":-30},"10":{"upper":0,"lower":-36},"18":{"upper":0,"lower":-43},"30":{"upper":0,"lower":-52},"50":{"upper":0,"lower":-62},"65":{"upper":0,"lower":-74},"80":{"upper":0,"lower":-74},"100":{"upper":0,"lower":-87},"120":{"upper":0,"lower":-87},"140":{"upper":0,"lower":-100},"160":{"upper":0,"lower":-100},"180":{"upper":0,"lower":-100},"200":{"upper":0,"lower":-115},"225":{"upper":0,"lower":-115},"250":{"upper":0,"lower":-115},"280":{"upper":0,"lower":-130},"315":{"upper":0,"lower":-130},"355":{"upper":0,"lower":-140},"400":{"upper":0,"lower":-140}},"P7":{"3":{"upper":-6,"lower":-16},"6":{"upper":-8,"lower":-20},"10":{"upper":-9,"lower":-24},"18":{"upper":-11,"lower":-29},"30":{"upper":-14,"lower":-35},"50":{"upper":-17,"lower":-42},"65":{"upper":-21,"lower":-51},"80":{"upper":-21,"lower":-51},"100":{"upper":-24,"lower":-59},"120":{"upper":-24,"lower":-59},"140":{"upper":-28,"lower":-68},"160":{"upper":-28,"lower":-68},"180":{"upper":-28,"lower":-68},"200":{"upper":-33,"lower":-79},"225":{"upper":-33,"lower":-79},"250":{"upper":-33,"lower":-79},"280":{"upper":-36,"lower":-88},"315":{"upper":-36,"lower":-88},"355":{"upper":-41,"lower":-98},"400":{"upper":-41,"lower":-98}},"P9":{"3":{"upper":-6,"lower":-31},"6":{"upper":-12,"lower":-42},"10":{"upper":-15,"lower":-51},"18":{"upper":-18,"lower":-61},"30":{"upper":-22,"lower":-74},"50":{"upper":-26,"lower":-88},"65":{"upper":-32,"lower":-106},"80":{"upper":-32,"lower":-106},"100":{"upper":-37,"lower":-124},"120":{"upper":-37,"lower":-124},"140":{"upper":-43,"lower":-143},"160":{"upper":-43,"lower":-143},"180":{"upper":-43,"lower":-143},"200":{"upper":-50,"lower":-165},"225":{"upper":-50,"lower":-165},"250":{"upper":-50,"lower":-165},"280":{"upper":-56,"lower":-186},"315":{"upper":-56,"lower":-186},"355":{"upper":-62,"lower":-202},"400":{"upper":-62,"lower":-202}}},"shaft":{"d9":{"3":{"upper":-20,"lower":-45},"6":{"upper":-30,"lower":-60},"10":{"upper":-40,"lower":-76},"18":{"upper":-50,"lower":-93},"30":{"upper":-65,"lower":-117},"50":{"upper":null,"lower":null},"65":{"upper":-100,"lower":-174},"80":{"upper":-100,"lower":-174},"100":{"upper":-120,"lower":-207},"120":{"upper":-120,"lower":-207},"140":{"upper":-145,"lower":-245},"160":{"upper":-145,"lower":-245},"180":{"upper":-145,"lower":-245},"200":{"upper":-170,"lower":-285},"225":{"upper":-170,"lower":-285},"250":{"upper":-170,"lower":-285},"280":{"upper":-190,"lower":-320},"315":{"upper":-190,"lower":-320},"355":{"upper":-210,"lower":-350},"400":{"upper":-210,"lower":-350}},"e8":{"3":{"upper":-14,"lower":-28},"6":{"upper":-20,"lower":-38},"10":{"upper":-25,"lower":-47},"18":{"upper":-32,"lower":-59},"30":{"upper":-40,"lower":-73},"50":{"upper":null,"lower":null},"65":{"upper":-60,"lower":-106},"80":{"upper":-60,"lower":-106},"100":{"upper":-72,"lower":-126},"120":{"upper":-72,"lower":-126},"140":{"upper":-85,"lower":-148},"160":{"upper":-85,"lower":-148},"180":{"upper":-85,"lower":-148},"200":{"upper":-100,"lower":-172},"225":{"upper":-100,"lower":-172},"250":{"upper":-100,"lower":-172},"280":{"upper":-110,"lower":-191},"315":{"upper":-110,"lower":-191},"355":{"upper":-125,"lower":-214},"400":{"upper":-125,"lower":-214}},"f7":{"3":{"upper":-6,"lower":-16},"6":{"upper":-10,"lower":-22},"10":{"upper":-13,"lower":-28},"18":{"upper":-16,"lower":-34},"30":{"upper":-20,"lower":-41},"50":{"upper":null,"lower":null},"65":{"upper":-30,"lower":-60},"80":{"upper":-30,"lower":-60},"100":{"upper":-36,"lower":-71},"120":{"upper":-36,"lower":-71},"140":{"upper":-43,"lower":-83},"160":{"upper":-43,"lower":-83},"180":{"upper":-43,"lower":-83},"200":{"upper":-50,"lower":-96},"225":{"upper":-50,"lower":-96},"250":{"upper":-50,"lower":-96},"280":{"upper":-56,"lower":-108},"315":{"upper":-56,"lower":-108},"355":{"upper":-62,"lower":-119},"400":{"upper":-62,"lower":-119}},"g6":{"3":{"upper":-2,"lower":-8},"6":{"upper":-4,"lower":-12},"10":{"upper":-5,"lower":-14},"18":{"upper":-6,"lower":-17},"30":{"upper":-7,"lower":-20},"50":{"upper":null,"lower":null},"65":{"upper":-10,"lower":-29},"80":{"upper":-10,"lower":-29},"100":{"upper":-12,"lower":-34},"120":{"upper":-12,"lower":-34},"140":{"upper":-14,"lower":-39},"160":{"upper":-14,"lower":-39},"180":{"upper":-14,"lower":-39},"200":{"upper":-15,"lower":-44},"225":{"upper":-15,"lower":-44},"250":{"upper":-15,"lower":-44},"280":{"upper":-17,"lower":-49},"315":{"upper":-17,"lower":-49},"355":{"upper":-18,"lower":-54},"400":{"upper":-18,"lower":-54}},"h5":{"3":{"upper":0,"lower":-4},"6":{"upper":0,"lower":-5},"10":{"upper":0,"lower":-6},"18":{"upper":0,"lower":-8},"30":{"upper":0,"lower":-9},"50":{"upper":null,"lower":null},"65":{"upper":0,"lower":-13},"80":{"upper":0,"lower":-13},"100":{"upper":0,"lower":-15},"120":{"upper":0,"lower":-15},"140":{"upper":0,"lower":-18},"160":{"upper":0,"lower":-18},"180":{"upper":0,"lower":-18},"200":{"upper":0,"lower":-20},"225":{"upper":0,"lower":-20},"250":{"upper":0,"lower":-20},"280":{"upper":0,"lower":-23},"315":{"upper":0,"lower":-23},"355":{"upper":0,"lower":-25},"400":{"upper":0,"lower":-25}},"h6":{"3":{"upper":0,"lower":-6},"6":{"upper":0,"lower":-8},"10":{"upper":0,"lower":-9},"18":{"upper":0,"lower":-11},"30":{"upper":0,"lower":-13},"50":{"upper":null,"lower":null},"65":{"upper":0,"lower":-19},"80":{"upper":0,"lower":-19},"100":{"upper":0,"lower":-22},"120":{"upper":0,"lower":-22},"140":{"upper":0,"lower":-25},"160":{"upper":0,"lower":-25},"180":{"upper":0,"lower":-25},"200":{"upper":0,"lower":-29},"225":{"upper":0,"lower":-29},"250":{"upper":0,"lower":-29},"280":{"upper":0,"lower":-32},"315":{"upper":0,"lower":-32},"355":{"upper":0,"lower":-36},"400":{"upper":0,"lower":-36}},"h7":{"3":{"upper":0,"lower":-10},"6":{"upper":0,"lower":-12},"10":{"upper":0,"lower":-15},"18":{"upper":0,"lower":-18},"30":{"upper":0,"lower":-21},"50":{"upper":null,"lower":null},"65":{"upper":0,"lower":-30},"80":{"upper":0,"lower":-30},"100":{"upper":0,"lower":-35},"120":{"upper":0,"lower":-35},"140":{"upper":0,"lower":-40},"160":{"upper":0,"lower":-40},"180":{"upper":0,"lower":-40},"200":{"upper":0,"lower":-46},"225":{"upper":0,"lower":-46},"250":{"upper":0,"lower":-46},"280":{"upper":0,"lower":-52},"315":{"upper":0,"lower":-52},"355":{"upper":0,"lower":-57},"400":{"upper":0,"lower":-57}},"h8":{"3":{"upper":0,"lower":-14},"6":{"upper":0,"lower":-18},"10":{"upper":0,"lower":-22},"18":{"upper":0,"lower":-27},"30":{"upper":0,"lower":-33},"50":{"upper":null,"lower":null},"65":{"upper":0,"lower":-46},"80":{"upper":0,"lower":-46},"100":{"upper":0,"lower":-54},"120":{"upper":0,"lower":-54},"140":{"upper":0,"lower":-63},"160":{"upper":0,"lower":-63},"180":{"upper":0,"lower":-63},"200":{"upper":0,"lower":-72},"225":{"upper":0,"lower":-72},"250":{"upper":0,"lower":-72},"280":{"upper":0,"lower":-81},"315":{"upper":0,"lower":-81},"355":{"upper":0,"lower":-89},"400":{"upper":0,"lower":-89}},"h9":{"3":{"upper":0,"lower":-25},"6":{"upper":0,"lower":-30},"10":{"upper":0,"lower":-36},"18":{"upper":0,"lower":-43},"30":{"upper":0,"lower":-52},"50":{"upper":null,"lower":null},"65":{"upper":0,"lower":-74},"80":{"upper":0,"lower":-74},"100":{"upper":0,"lower":-87},"120":{"upper":0,"lower":-87},"140":{"upper":0,"lower":-100},"160":{"upper":0,"lower":-100},"180":{"upper":0,"lower":-100},"200":{"upper":0,"lower":-115},"225":{"upper":0,"lower":-115},"250":{"upper":0,"lower":-115},"280":{"upper":0,"lower":-130},"315":{"upper":0,"lower":-130},"355":{"upper":0,"lower":-140},"400":{"upper":0,"lower":-140}},"h11":{"3":{"upper":0,"lower":-60},"6":{"upper":0,"lower":-75},"10":{"upper":0,"lower":-90},"18":{"upper":0,"lower":-110},"30":{"upper":0,"lower":-130},"50":{"upper":null,"lower":null},"65":{"upper":0,"lower":-190},"80":{"upper":0,"lower":-190},"100":{"upper":0,"lower":-220},"120":{"upper":0,"lower":-220},"140":{"upper":0,"lower":-250},"160":{"upper":0,"lower":-250},"180":{"upper":0,"lower":-250},"200":{"upper":0,"lower":-290},"225":{"upper":0,"lower":-290},"250":{"upper":0,"lower":-290},"280":{"upper":0,"lower":-320},"315":{"upper":0,"lower":-320},"355":{"upper":0,"lower":-360},"400":{"upper":0,"lower":-360}},"js5":{"3":{"upper":2,"lower":-2},"6":{"upper":2.5,"lower":-2.5},"10":{"upper":3,"lower":-3},"18":{"upper":4,"lower":-4},"30":{"upper":4.5,"lower":-4.5},"50":{"upper":null,"lower":null},"65":{"upper":6.5,"lower":-6.5},"80":{"upper":6.5,"lower":-6.5},"100":{"upper":7.5,"lower":-7.5},"120":{"upper":7.5,"lower":-7.5},"140":{"upper":9,"lower":-9},"160":{"upper":9,"lower":-9},"180":{"upper":9,"lower":-9},"200":{"upper":10,"lower":-10},"225":{"upper":10,"lower":-10},"250":{"upper":10,"lower":-10},"280":{"upper":11.5,"lower":-11.5},"315":{"upper":11.5,"lower":-11.5},"355":{"upper":12.5,"lower":-12.5},"400":{"upper":12.5,"lower":-12.5}},"js6":{"3":{"upper":3,"lower":-3},"6":{"upper":4,"lower":-4},"10":{"upper":4.5,"lower":-4.5},"18":{"upper":5.5,"lower":-5.5},"30":{"upper":6.5,"lower":-6.5},"50":{"upper":null,"lower":null},"65":{"upper":9.5,"lower":-9.5},"80":{"upper":9.5,"lower":-9.5},"100":{"upper":11,"lower":-11},"120":{"upper":11,"lower":-11},"140":{"upper":12.5,"lower":-12.5},"160":{"upper":12.5,"lower":-12.5},"180":{"upper":12.5,"lower":-12.5},"200":{"upper":14.5,"lower":-14.5},"225":{"upper":14.5,"lower":-14.5},"250":{"upper":14.5,"lower":-14.5},"280":{"upper":16,"lower":-16},"315":{"upper":16,"lower":-16},"355":{"upper":18,"lower":-18},"400":{"upper":18,"lower":-18}},"js13":{"3":{"upper":70,"lower":-70},"6":{"upper":90,"lower":-90},"10":{"upper":110,"lower":-110},"18":{"upper":135,"lower":-135},"30":{"upper":165,"lower":-165},"50":{"upper":null,"lower":null},"65":{"upper":230,"lower":-230},"80":{"upper":230,"lower":-230},"100":{"upper":270,"lower":-270},"120":{"upper":270,"lower":-270},"140":{"upper":315,"lower":-315},"160":{"upper":315,"lower":-315},"180":{"upper":315,"lower":-315},"200":{"upper":360,"lower":-360},"225":{"upper":360,"lower":-360},"250":{"upper":360,"lower":-360},"280":{"upper":405,"lower":-405},"315":{"upper":405,"lower":-405},"355":{"upper":445,"lower":-445},"400":{"upper":445,"lower":-445}},"js14":{"3":{"upper":125,"lower":-125},"6":{"upper":150,"lower":-150},"10":{"upper":180,"lower":-180},"18":{"upper":215,"lower":-215},"30":{"upper":260,"lower":-260},"50":{"upper":null,"lower":null},"65":{"upper":370,"lower":-370},"80":{"upper":370,"lower":-370},"100":{"upper":435,"lower":-435},"120":{"upper":435,"lower":-435},"140":{"upper":500,"lower":-500},"160":{"upper":500,"lower":-500},"180":{"upper":500,"lower":-500},"200":{"upper":575,"lower":-575},"225":{"upper":575,"lower":-575},"250":{"upper":575,"lower":-575},"280":{"upper":650,"lower":-650},"315":{"upper":650,"lower":-650},"355":{"upper":700,"lower":-700},"400":{"upper":700,"lower":-700}},"k5":{"3":{"upper":4,"lower":0},"6":{"upper":6,"lower":1},"10":{"upper":7,"lower":1},"18":{"upper":9,"lower":1},"30":{"upper":11,"lower":2},"50":{"upper":null,"lower":null},"65":{"upper":15,"lower":2},"80":{"upper":15,"lower":2},"100":{"upper":18,"lower":3},"120":{"upper":18,"lower":3},"140":{"upper":21,"lower":3},"160":{"upper":21,"lower":3},"180":{"upper":21,"lower":3},"200":{"upper":24,"lower":4},"225":{"upper":24,"lower":4},"250":{"upper":24,"lower":4},"280":{"upper":27,"lower":4},"315":{"upper":27,"lower":4},"355":{"upper":29,"lower":4},"400":{"upper":29,"lower":4}},"k6":{"3":{"upper":6,"lower":0},"6":{"upper":9,"lower":1},"10":{"upper":10,"lower":1},"18":{"upper":12,"lower":1},"30":{"upper":15,"lower":2},"50":{"upper":null,"lower":null},"65":{"upper":21,"lower":2},"80":{"upper":21,"lower":2},"100":{"upper":25,"lower":3},"120":{"upper":25,"lower":3},"140":{"upper":28,"lower":3},"160":{"upper":28,"lower":3},"180":{"upper":28,"lower":3},"200":{"upper":33,"lower":4},"225":{"upper":33,"lower":4},"250":{"upper":33,"lower":4},"280":{"upper":36,"lower":4},"315":{"upper":36,"lower":4},"355":{"upper":40,"lower":4},"400":{"upper":40,"lower":4}},"m5":{"3":{"upper":6,"lower":2},"6":{"upper":9,"lower":4},"10":{"upper":12,"lower":6},"18":{"upper":15,"lower":7},"30":{"upper":17,"lower":8},"50":{"upper":null,"lower":null},"65":{"upper":24,"lower":11},"80":{"upper":24,"lower":11},"100":{"upper":28,"lower":13},"120":{"upper":28,"lower":13},"140":{"upper":33,"lower":15},"160":{"upper":33,"lower":15},"180":{"upper":33,"lower":15},"200":{"upper":37,"lower":17},"225":{"upper":37,"lower":17},"250":{"upper":37,"lower":17},"280":{"upper":43,"lower":20},"315":{"upper":43,"lower":20},"355":{"upper":46,"lower":21},"400":{"upper":46,"lower":21}},"m6":{"3":{"upper":8,"lower":2},"6":{"upper":12,"lower":4},"10":{"upper":15,"lower":6},"18":{"upper":18,"lower":7},"30":{"upper":21,"lower":8},"50":{"upper":null,"lower":null},"65":{"upper":30,"lower":11},"80":{"upper":30,"lower":11},"100":{"upper":35,"lower":13},"120":{"upper":35,"lower":13},"140":{"upper":40,"lower":15},"160":{"upper":40,"lower":15},"180":{"upper":40,"lower":15},"200":{"upper":46,"lower":17},"225":{"upper":46,"lower":17},"250":{"upper":46,"lower":17},"280":{"upper":52,"lower":20},"315":{"upper":52,"lower":20},"355":{"upper":57,"lower":21},"400":{"upper":57,"lower":21}},"n5":{"3":{"upper":8,"lower":4},"6":{"upper":13,"lower":8},"10":{"upper":16,"lower":10},"18":{"upper":20,"lower":12},"30":{"upper":24,"lower":15},"50":{"upper":null,"lower":null},"65":{"upper":33,"lower":20},"80":{"upper":33,"lower":20},"100":{"upper":38,"lower":23},"120":{"upper":38,"lower":23},"140":{"upper":45,"lower":27},"160":{"upper":45,"lower":27},"180":{"upper":45,"lower":27},"200":{"upper":51,"lower":31},"225":{"upper":51,"lower":31},"250":{"upper":51,"lower":31},"280":{"upper":57,"lower":34},"315":{"upper":57,"lower":34},"355":{"upper":62,"lower":37},"400":{"upper":62,"lower":37}},"n6":{"3":{"upper":10,"lower":4},"6":{"upper":16,"lower":8},"10":{"upper":19,"lower":10},"18":{"upper":23,"lower":12},"30":{"upper":28,"lower":15},"50":{"upper":null,"lower":null},"65":{"upper":39,"lower":20},"80":{"upper":39,"lower":20},"100":{"upper":45,"lower":23},"120":{"upper":45,"lower":23},"140":{"upper":52,"lower":27},"160":{"upper":52,"lower":27},"180":{"upper":52,"lower":27},"200":{"upper":60,"lower":31},"225":{"upper":60,"lower":31},"250":{"upper":60,"lower":31},"280":{"upper":66,"lower":34},"315":{"upper":66,"lower":34},"355":{"upper":73,"lower":37},"400":{"upper":73,"lower":37}},"p6":{"3":{"upper":12,"lower":6},"6":{"upper":20,"lower":12},"10":{"upper":24,"lower":15},"18":{"upper":29,"lower":18},"30":{"upper":35,"lower":22},"50":{"upper":null,"lower":null},"65":{"upper":51,"lower":32},"80":{"upper":51,"lower":32},"100":{"upper":59,"lower":37},"120":{"upper":59,"lower":37},"140":{"upper":68,"lower":43},"160":{"upper":68,"lower":43},"180":{"upper":68,"lower":43},"200":{"upper":79,"lower":50},"225":{"upper":79,"lower":50},"250":{"upper":79,"lower":50},"280":{"upper":88,"lower":56},"315":{"upper":88,"lower":56},"355":{"upper":98,"lower":62},"400":{"upper":98,"lower":62}},"r6":{"3":{"upper":16,"lower":10},"6":{"upper":23,"lower":15},"10":{"upper":28,"lower":19},"18":{"upper":34,"lower":23},"30":{"upper":41,"lower":28},"50":{"upper":null,"lower":null},"65":{"upper":60,"lower":41},"80":{"upper":62,"lower":43},"100":{"upper":73,"lower":51},"120":{"upper":76,"lower":54},"140":{"upper":88,"lower":63},"160":{"upper":90,"lower":65},"180":{"upper":93,"lower":68},"200":{"upper":106,"lower":77},"225":{"upper":109,"lower":80},"250":{"upper":113,"lower":84},"280":{"upper":126,"lower":94},"315":{"upper":130,"lower":98},"355":{"upper":144,"lower":108},"400":{"upper":150,"lower":114}},"s6":{"3":{"upper":20,"lower":14},"6":{"upper":27,"lower":19},"10":{"upper":32,"lower":23},"18":{"upper":39,"lower":28},"30":{"upper":48,"lower":35},"50":{"upper":null,"lower":null},"65":{"upper":72,"lower":53},"80":{"upper":78,"lower":59},"100":{"upper":93,"lower":71},"120":{"upper":101,"lower":79},"140":{"upper":117,"lower":92},"160":{"upper":125,"lower":100},"180":{"upper":133,"lower":108},"200":{"upper":151,"lower":122},"225":{"upper":159,"lower":130},"250":{"upper":169,"lower":140},"280":{"upper":190,"lower":158},"315":{"upper":202,"lower":170},"355":{"upper":226,"lower":190},"400":{"upper":244,"lower":208}},"s7":{"3":{"upper":24,"lower":14},"6":{"upper":31,"lower":19},"10":{"upper":38,"lower":23},"18":{"upper":46,"lower":28},"30":{"upper":56,"lower":35},"50":{"upper":null,"lower":null},"65":{"upper":83,"lower":53},"80":{"upper":89,"lower":59},"100":{"upper":106,"lower":71},"120":{"upper":114,"lower":79},"140":{"upper":132,"lower":92},"160":{"upper":140,"lower":100},"180":{"upper":148,"lower":108},"200":{"upper":168,"lower":122},"225":{"upper":176,"lower":130},"250":{"upper":186,"lower":140},"280":{"upper":210,"lower":158},"315":{"upper":222,"lower":170},"355":{"upper":247,"lower":190},"400":{"upper":265,"lower":208}}}}
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(1)
+var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = null
 /* template */
-var __vue_template__ = __webpack_require__(21)
+var __vue_template__ = __webpack_require__(15)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -11933,7 +11962,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 21 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -11990,13 +12019,16 @@ var render = function() {
         _vm._v(" "),
         _c("path", {
           attrs: {
+            fill: "#606f7b",
             id: "path1_stroke_2x",
             d:
               "M12 7a5 5 0 0 1-5 5v4a9 9 0 0 0 9-9h-4zm-5 5a5 5 0 0 1-5-5h-4a9 9 0 0 0 9 9v-4zM2 7a5 5 0 0 1 5-5v-4a9 9 0 0 0-9 9h4zm5-5a5 5 0 0 1 5 5h4a9 9 0 0 0-9-9v4z"
           }
         }),
         _vm._v(" "),
-        _c("path", { attrs: { id: "pf2", d: "M0 0h18v2H0V0z" } })
+        _c("path", {
+          attrs: { fill: "#606f7b", id: "pf2", d: "M0 0h18v2H0V0z" }
+        })
       ])
     ]
   )
@@ -12012,15 +12044,15 @@ if (false) {
 }
 
 /***/ }),
-/* 22 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(1)
+var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = null
 /* template */
-var __vue_template__ = __webpack_require__(23)
+var __vue_template__ = __webpack_require__(17)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -12059,7 +12091,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 23 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -12131,15 +12163,15 @@ if (false) {
 }
 
 /***/ }),
-/* 24 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(1)
+var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = null
 /* template */
-var __vue_template__ = __webpack_require__(25)
+var __vue_template__ = __webpack_require__(19)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -12178,7 +12210,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 25 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -12248,6 +12280,18 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-26a649bf", module.exports)
   }
 }
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+module.exports = {"hole":{"D10":{"3":{"upper":60,"lower":20},"6":{"upper":78,"lower":30},"10":{"upper":98,"lower":40},"18":{"upper":120,"lower":50},"30":{"upper":149,"lower":65},"50":{"upper":180,"lower":80},"65":{"upper":220,"lower":100},"80":{"upper":220,"lower":100},"100":{"upper":260,"lower":120},"120":{"upper":260,"lower":120},"140":{"upper":305,"lower":145},"160":{"upper":305,"lower":145},"180":{"upper":305,"lower":145},"200":{"upper":335,"lower":170},"225":{"upper":335,"lower":170},"250":{"upper":335,"lower":170},"280":{"upper":400,"lower":190},"315":{"upper":400,"lower":190},"355":{"upper":440,"lower":210},"400":{"upper":440,"lower":210}},"E9":{"3":{"upper":39,"lower":14},"6":{"upper":50,"lower":20},"10":{"upper":61,"lower":25},"18":{"upper":75,"lower":32},"30":{"upper":92,"lower":40},"50":{"upper":112,"lower":50},"65":{"upper":134,"lower":60},"80":{"upper":134,"lower":60},"100":{"upper":159,"lower":72},"120":{"upper":159,"lower":72},"140":{"upper":185,"lower":85},"160":{"upper":185,"lower":85},"180":{"upper":185,"lower":85},"200":{"upper":215,"lower":110},"225":{"upper":215,"lower":110},"250":{"upper":215,"lower":110},"280":{"upper":240,"lower":110},"315":{"upper":240,"lower":110},"355":{"upper":265,"lower":125},"400":{"upper":265,"lower":125}},"F7":{"3":{"upper":16,"lower":6},"6":{"upper":22,"lower":10},"10":{"upper":28,"lower":13},"18":{"upper":34,"lower":16},"30":{"upper":41,"lower":20},"50":{"upper":50,"lower":25},"65":{"upper":60,"lower":30},"80":{"upper":60,"lower":30},"100":{"upper":71,"lower":36},"120":{"upper":71,"lower":36},"140":{"upper":83,"lower":43},"160":{"upper":83,"lower":43},"180":{"upper":83,"lower":43},"200":{"upper":96,"lower":50},"225":{"upper":96,"lower":50},"250":{"upper":96,"lower":50},"280":{"upper":108,"lower":56},"315":{"upper":108,"lower":56},"355":{"upper":119,"lower":62},"400":{"upper":119,"lower":62}},"F8":{"3":{"upper":20,"lower":10},"6":{"upper":28,"lower":10},"10":{"upper":35,"lower":13},"18":{"upper":43,"lower":16},"30":{"upper":53,"lower":20},"50":{"upper":64,"lower":25},"65":{"upper":76,"lower":30},"80":{"upper":76,"lower":30},"100":{"upper":90,"lower":36},"120":{"upper":90,"lower":36},"140":{"upper":106,"lower":43},"160":{"upper":106,"lower":43},"180":{"upper":106,"lower":43},"200":{"upper":122,"lower":50},"225":{"upper":122,"lower":50},"250":{"upper":122,"lower":50},"280":{"upper":137,"lower":56},"315":{"upper":137,"lower":56},"355":{"upper":151,"lower":62},"400":{"upper":151,"lower":62}},"G7":{"3":{"upper":12,"lower":2},"6":{"upper":16,"lower":4},"10":{"upper":20,"lower":5},"18":{"upper":24,"lower":6},"30":{"upper":28,"lower":7},"50":{"upper":34,"lower":9},"65":{"upper":40,"lower":10},"80":{"upper":40,"lower":10},"100":{"upper":47,"lower":12},"120":{"upper":47,"lower":12},"140":{"upper":54,"lower":14},"160":{"upper":54,"lower":14},"180":{"upper":54,"lower":14},"200":{"upper":61,"lower":15},"225":{"upper":61,"lower":15},"250":{"upper":61,"lower":15},"280":{"upper":69,"lower":17},"315":{"upper":69,"lower":17},"355":{"upper":75,"lower":18},"400":{"upper":75,"lower":18}},"G9":{"3":{"upper":27,"lower":2},"6":{"upper":34,"lower":4},"10":{"upper":41,"lower":5},"18":{"upper":49,"lower":6},"30":{"upper":59,"lower":7},"50":{"upper":71,"lower":9},"65":{"upper":0,"lower":0},"80":{"upper":0,"lower":0},"100":{"upper":0,"lower":0},"120":{"upper":0,"lower":0},"140":{"upper":0,"lower":0},"160":{"upper":-50,"lower":-90},"180":{"upper":-53,"lower":-93},"200":{"upper":0,"lower":0},"225":{"upper":-63,"lower":-109},"250":{"upper":-67,"lower":-113},"280":{"upper":0,"lower":0},"315":{"upper":-78,"lower":-130},"355":{"upper":0,"lower":0},"400":{"upper":-93,"lower":-150}},"H6":{"3":{"upper":6,"lower":0},"6":{"upper":8,"lower":0},"10":{"upper":9,"lower":0},"18":{"upper":11,"lower":0},"30":{"upper":13,"lower":0},"50":{"upper":16,"lower":0},"65":{"upper":19,"lower":0},"80":{"upper":19,"lower":0},"100":{"upper":22,"lower":0},"120":{"upper":22,"lower":0},"140":{"upper":25,"lower":0},"160":{"upper":25,"lower":0},"180":{"upper":25,"lower":0},"200":{"upper":29,"lower":0},"225":{"upper":29,"lower":0},"250":{"upper":29,"lower":0},"280":{"upper":32,"lower":0},"315":{"upper":32,"lower":0},"355":{"upper":36,"lower":0},"400":{"upper":36,"lower":0}},"H7":{"3":{"upper":10,"lower":0},"6":{"upper":12,"lower":0},"10":{"upper":15,"lower":0},"18":{"upper":18,"lower":0},"30":{"upper":21,"lower":0},"50":{"upper":25,"lower":0},"65":{"upper":30,"lower":0},"80":{"upper":30,"lower":0},"100":{"upper":35,"lower":0},"120":{"upper":35,"lower":0},"140":{"upper":40,"lower":0},"160":{"upper":40,"lower":0},"180":{"upper":40,"lower":0},"200":{"upper":46,"lower":0},"225":{"upper":46,"lower":0},"250":{"upper":46,"lower":0},"280":{"upper":52,"lower":0},"315":{"upper":52,"lower":0},"355":{"upper":57,"lower":0},"400":{"upper":57,"lower":0}},"H8":{"3":{"upper":14,"lower":0},"6":{"upper":18,"lower":0},"10":{"upper":22,"lower":0},"18":{"upper":27,"lower":0},"30":{"upper":33,"lower":0},"50":{"upper":39,"lower":0},"65":{"upper":46,"lower":0},"80":{"upper":46,"lower":0},"100":{"upper":54,"lower":0},"120":{"upper":54,"lower":0},"140":{"upper":63,"lower":0},"160":{"upper":63,"lower":0},"180":{"upper":63,"lower":0},"200":{"upper":72,"lower":0},"225":{"upper":72,"lower":0},"250":{"upper":72,"lower":0},"280":{"upper":81,"lower":0},"315":{"upper":81,"lower":0},"355":{"upper":89,"lower":0},"400":{"upper":89,"lower":0}},"H9":{"3":{"upper":25,"lower":0},"6":{"upper":30,"lower":0},"10":{"upper":36,"lower":0},"18":{"upper":43,"lower":0},"30":{"upper":52,"lower":0},"50":{"upper":62,"lower":0},"65":{"upper":74,"lower":0},"80":{"upper":74,"lower":0},"100":{"upper":87,"lower":0},"120":{"upper":87,"lower":0},"140":{"upper":100,"lower":0},"160":{"upper":100,"lower":0},"180":{"upper":100,"lower":0},"200":{"upper":115,"lower":0},"225":{"upper":115,"lower":0},"250":{"upper":115,"lower":0},"280":{"upper":130,"lower":0},"315":{"upper":130,"lower":0},"355":{"upper":140,"lower":0},"400":{"upper":140,"lower":0}},"H11":{"3":{"upper":60,"lower":0},"6":{"upper":75,"lower":0},"10":{"upper":90,"lower":0},"18":{"upper":110,"lower":0},"30":{"upper":130,"lower":0},"50":{"upper":160,"lower":0},"65":{"upper":190,"lower":0},"80":{"upper":190,"lower":0},"100":{"upper":220,"lower":0},"120":{"upper":220,"lower":0},"140":{"upper":250,"lower":0},"160":{"upper":250,"lower":0},"180":{"upper":250,"lower":0},"200":{"upper":290,"lower":0},"225":{"upper":290,"lower":0},"250":{"upper":290,"lower":0},"280":{"upper":320,"lower":0},"315":{"upper":320,"lower":0},"355":{"upper":360,"lower":0},"400":{"upper":360,"lower":0}},"H12":{"3":{"upper":100,"lower":0},"6":{"upper":120,"lower":0},"10":{"upper":150,"lower":0},"18":{"upper":180,"lower":0},"30":{"upper":210,"lower":0},"50":{"upper":250,"lower":0},"65":{"upper":300,"lower":0},"80":{"upper":300,"lower":0},"100":{"upper":350,"lower":0},"120":{"upper":350,"lower":0},"140":{"upper":400,"lower":0},"160":{"upper":400,"lower":0},"180":{"upper":400,"lower":0},"200":{"upper":460,"lower":0},"225":{"upper":460,"lower":0},"250":{"upper":460,"lower":0},"280":{"upper":520,"lower":0},"315":{"upper":520,"lower":0},"355":{"upper":570,"lower":0},"400":{"upper":570,"lower":0}},"H13":{"3":{"upper":140,"lower":0},"6":{"upper":180,"lower":0},"10":{"upper":220,"lower":0},"18":{"upper":270,"lower":0},"30":{"upper":330,"lower":0},"50":{"upper":390,"lower":0},"65":{"upper":460,"lower":0},"80":{"upper":460,"lower":0},"100":{"upper":540,"lower":0},"120":{"upper":540,"lower":0},"140":{"upper":630,"lower":0},"160":{"upper":630,"lower":0},"180":{"upper":630,"lower":0},"200":{"upper":720,"lower":0},"225":{"upper":720,"lower":0},"250":{"upper":720,"lower":0},"280":{"upper":810,"lower":0},"315":{"upper":810,"lower":0},"355":{"upper":890,"lower":0},"400":{"upper":890,"lower":0}},"JS7":{"3":{"upper":5,"lower":-5},"6":{"upper":6,"lower":-6},"10":{"upper":7.5,"lower":-7.5},"18":{"upper":9,"lower":-9},"30":{"upper":10.5,"lower":-10.5},"50":{"upper":12.5,"lower":-12.5},"65":{"upper":15,"lower":-15},"80":{"upper":15,"lower":-15},"100":{"upper":17.5,"lower":-17.5},"120":{"upper":17.5,"lower":-17.5},"140":{"upper":20,"lower":-20},"160":{"upper":20,"lower":-20},"180":{"upper":20,"lower":-20},"200":{"upper":23,"lower":-23},"225":{"upper":23,"lower":-23},"250":{"upper":23,"lower":-23},"280":{"upper":26,"lower":-26},"315":{"upper":26,"lower":-26},"355":{"upper":28.5,"lower":-28.5},"400":{"upper":28.5,"lower":-28.5}},"JS9":{"3":{"upper":12.5,"lower":-12.5},"6":{"upper":15,"lower":-15},"10":{"upper":18,"lower":-18},"18":{"upper":21.5,"lower":-21.5},"30":{"upper":26,"lower":-26},"50":{"upper":31,"lower":-31},"65":{"upper":37,"lower":-37},"80":{"upper":37,"lower":-37},"100":{"upper":43.5,"lower":-43.5},"120":{"upper":43.5,"lower":-43.5},"140":{"upper":50,"lower":-50},"160":{"upper":50,"lower":-50},"180":{"upper":50,"lower":-50},"200":{"upper":57.5,"lower":-57.5},"225":{"upper":57.5,"lower":-57.5},"250":{"upper":57.5,"lower":-57.5},"280":{"upper":65,"lower":-65},"315":{"upper":65,"lower":-65},"355":{"upper":70,"lower":-70},"400":{"upper":70,"lower":-70}},"K6":{"3":{"upper":0,"lower":-6},"6":{"upper":2,"lower":-6},"10":{"upper":2,"lower":-7},"18":{"upper":2,"lower":-9},"30":{"upper":2,"lower":-11},"50":{"upper":3,"lower":-13},"65":{"upper":4,"lower":-15},"80":{"upper":4,"lower":-15},"100":{"upper":4,"lower":-18},"120":{"upper":4,"lower":-18},"140":{"upper":4,"lower":-21},"160":{"upper":4,"lower":-21},"180":{"upper":4,"lower":-21},"200":{"upper":5,"lower":-24},"225":{"upper":5,"lower":-24},"250":{"upper":5,"lower":-24},"280":{"upper":5,"lower":-27},"315":{"upper":5,"lower":-27},"355":{"upper":7,"lower":-29},"400":{"upper":7,"lower":-29}},"K7":{"3":{"upper":0,"lower":-10},"6":{"upper":3,"lower":-9},"10":{"upper":5,"lower":-10},"18":{"upper":6,"lower":-12},"30":{"upper":6,"lower":-15},"50":{"upper":7,"lower":-18},"65":{"upper":9,"lower":-21},"80":{"upper":9,"lower":-21},"100":{"upper":10,"lower":-25},"120":{"upper":10,"lower":-25},"140":{"upper":12,"lower":-28},"160":{"upper":12,"lower":-28},"180":{"upper":12,"lower":-28},"200":{"upper":13,"lower":-33},"225":{"upper":13,"lower":-33},"250":{"upper":13,"lower":-33},"280":{"upper":16,"lower":-36},"315":{"upper":16,"lower":-36},"355":{"upper":17,"lower":-40},"400":{"upper":17,"lower":-40}},"M6":{"3":{"upper":-2,"lower":-8},"6":{"upper":-1,"lower":-9},"10":{"upper":-3,"lower":-12},"18":{"upper":-4,"lower":-15},"30":{"upper":-4,"lower":-17},"50":{"upper":-4,"lower":-20},"65":{"upper":-5,"lower":-24},"80":{"upper":-5,"lower":-24},"100":{"upper":-6,"lower":-28},"120":{"upper":-6,"lower":-28},"140":{"upper":-8,"lower":-33},"160":{"upper":-8,"lower":-33},"180":{"upper":-8,"lower":-33},"200":{"upper":-8,"lower":-37},"225":{"upper":-8,"lower":-37},"250":{"upper":-8,"lower":-37},"280":{"upper":-9,"lower":-41},"315":{"upper":-9,"lower":-41},"355":{"upper":-10,"lower":-46},"400":{"upper":-10,"lower":-46}},"M7":{"3":{"upper":-2,"lower":-12},"6":{"upper":0,"lower":-12},"10":{"upper":0,"lower":-15},"18":{"upper":0,"lower":-18},"30":{"upper":0,"lower":-21},"50":{"upper":0,"lower":-25},"65":{"upper":0,"lower":-30},"80":{"upper":0,"lower":-30},"100":{"upper":0,"lower":-35},"120":{"upper":0,"lower":-35},"140":{"upper":0,"lower":-40},"160":{"upper":0,"lower":-40},"180":{"upper":0,"lower":-40},"200":{"upper":0,"lower":-46},"225":{"upper":0,"lower":-46},"250":{"upper":0,"lower":-46},"280":{"upper":0,"lower":-52},"315":{"upper":0,"lower":-52},"355":{"upper":0,"lower":-57},"400":{"upper":0,"lower":-57}},"N7":{"3":{"upper":-4,"lower":-14},"6":{"upper":-4,"lower":-16},"10":{"upper":-4,"lower":-19},"18":{"upper":-5,"lower":-23},"30":{"upper":-7,"lower":-28},"50":{"upper":-8,"lower":-33},"65":{"upper":-9,"lower":-39},"80":{"upper":-9,"lower":-39},"100":{"upper":-10,"lower":-45},"120":{"upper":-10,"lower":-45},"140":{"upper":-12,"lower":-52},"160":{"upper":-12,"lower":-52},"180":{"upper":-12,"lower":-52},"200":{"upper":-14,"lower":-60},"225":{"upper":-14,"lower":-60},"250":{"upper":-14,"lower":-60},"280":{"upper":-14,"lower":-66},"315":{"upper":-14,"lower":-66},"355":{"upper":-16,"lower":-73},"400":{"upper":-16,"lower":-73}},"N9":{"3":{"upper":-4,"lower":-29},"6":{"upper":0,"lower":-30},"10":{"upper":0,"lower":-36},"18":{"upper":0,"lower":-43},"30":{"upper":0,"lower":-52},"50":{"upper":0,"lower":-62},"65":{"upper":0,"lower":-74},"80":{"upper":0,"lower":-74},"100":{"upper":0,"lower":-87},"120":{"upper":0,"lower":-87},"140":{"upper":0,"lower":-100},"160":{"upper":0,"lower":-100},"180":{"upper":0,"lower":-100},"200":{"upper":0,"lower":-115},"225":{"upper":0,"lower":-115},"250":{"upper":0,"lower":-115},"280":{"upper":0,"lower":-130},"315":{"upper":0,"lower":-130},"355":{"upper":0,"lower":-140},"400":{"upper":0,"lower":-140}},"P7":{"3":{"upper":-6,"lower":-16},"6":{"upper":-8,"lower":-20},"10":{"upper":-9,"lower":-24},"18":{"upper":-11,"lower":-29},"30":{"upper":-14,"lower":-35},"50":{"upper":-17,"lower":-42},"65":{"upper":-21,"lower":-51},"80":{"upper":-21,"lower":-51},"100":{"upper":-24,"lower":-59},"120":{"upper":-24,"lower":-59},"140":{"upper":-28,"lower":-68},"160":{"upper":-28,"lower":-68},"180":{"upper":-28,"lower":-68},"200":{"upper":-33,"lower":-79},"225":{"upper":-33,"lower":-79},"250":{"upper":-33,"lower":-79},"280":{"upper":-36,"lower":-88},"315":{"upper":-36,"lower":-88},"355":{"upper":-41,"lower":-98},"400":{"upper":-41,"lower":-98}},"P9":{"3":{"upper":-6,"lower":-31},"6":{"upper":-12,"lower":-42},"10":{"upper":-15,"lower":-51},"18":{"upper":-18,"lower":-61},"30":{"upper":-22,"lower":-74},"50":{"upper":-26,"lower":-88},"65":{"upper":-32,"lower":-106},"80":{"upper":-32,"lower":-106},"100":{"upper":-37,"lower":-124},"120":{"upper":-37,"lower":-124},"140":{"upper":-43,"lower":-143},"160":{"upper":-43,"lower":-143},"180":{"upper":-43,"lower":-143},"200":{"upper":-50,"lower":-165},"225":{"upper":-50,"lower":-165},"250":{"upper":-50,"lower":-165},"280":{"upper":-56,"lower":-186},"315":{"upper":-56,"lower":-186},"355":{"upper":-62,"lower":-202},"400":{"upper":-62,"lower":-202}}},"shaft":{"d9":{"3":{"upper":-20,"lower":-45},"6":{"upper":-30,"lower":-60},"10":{"upper":-40,"lower":-76},"18":{"upper":-50,"lower":-93},"30":{"upper":-65,"lower":-117},"50":{"upper":null,"lower":null},"65":{"upper":-100,"lower":-174},"80":{"upper":-100,"lower":-174},"100":{"upper":-120,"lower":-207},"120":{"upper":-120,"lower":-207},"140":{"upper":-145,"lower":-245},"160":{"upper":-145,"lower":-245},"180":{"upper":-145,"lower":-245},"200":{"upper":-170,"lower":-285},"225":{"upper":-170,"lower":-285},"250":{"upper":-170,"lower":-285},"280":{"upper":-190,"lower":-320},"315":{"upper":-190,"lower":-320},"355":{"upper":-210,"lower":-350},"400":{"upper":-210,"lower":-350}},"e8":{"3":{"upper":-14,"lower":-28},"6":{"upper":-20,"lower":-38},"10":{"upper":-25,"lower":-47},"18":{"upper":-32,"lower":-59},"30":{"upper":-40,"lower":-73},"50":{"upper":null,"lower":null},"65":{"upper":-60,"lower":-106},"80":{"upper":-60,"lower":-106},"100":{"upper":-72,"lower":-126},"120":{"upper":-72,"lower":-126},"140":{"upper":-85,"lower":-148},"160":{"upper":-85,"lower":-148},"180":{"upper":-85,"lower":-148},"200":{"upper":-100,"lower":-172},"225":{"upper":-100,"lower":-172},"250":{"upper":-100,"lower":-172},"280":{"upper":-110,"lower":-191},"315":{"upper":-110,"lower":-191},"355":{"upper":-125,"lower":-214},"400":{"upper":-125,"lower":-214}},"f7":{"3":{"upper":-6,"lower":-16},"6":{"upper":-10,"lower":-22},"10":{"upper":-13,"lower":-28},"18":{"upper":-16,"lower":-34},"30":{"upper":-20,"lower":-41},"50":{"upper":null,"lower":null},"65":{"upper":-30,"lower":-60},"80":{"upper":-30,"lower":-60},"100":{"upper":-36,"lower":-71},"120":{"upper":-36,"lower":-71},"140":{"upper":-43,"lower":-83},"160":{"upper":-43,"lower":-83},"180":{"upper":-43,"lower":-83},"200":{"upper":-50,"lower":-96},"225":{"upper":-50,"lower":-96},"250":{"upper":-50,"lower":-96},"280":{"upper":-56,"lower":-108},"315":{"upper":-56,"lower":-108},"355":{"upper":-62,"lower":-119},"400":{"upper":-62,"lower":-119}},"g6":{"3":{"upper":-2,"lower":-8},"6":{"upper":-4,"lower":-12},"10":{"upper":-5,"lower":-14},"18":{"upper":-6,"lower":-17},"30":{"upper":-7,"lower":-20},"50":{"upper":null,"lower":null},"65":{"upper":-10,"lower":-29},"80":{"upper":-10,"lower":-29},"100":{"upper":-12,"lower":-34},"120":{"upper":-12,"lower":-34},"140":{"upper":-14,"lower":-39},"160":{"upper":-14,"lower":-39},"180":{"upper":-14,"lower":-39},"200":{"upper":-15,"lower":-44},"225":{"upper":-15,"lower":-44},"250":{"upper":-15,"lower":-44},"280":{"upper":-17,"lower":-49},"315":{"upper":-17,"lower":-49},"355":{"upper":-18,"lower":-54},"400":{"upper":-18,"lower":-54}},"h5":{"3":{"upper":0,"lower":-4},"6":{"upper":0,"lower":-5},"10":{"upper":0,"lower":-6},"18":{"upper":0,"lower":-8},"30":{"upper":0,"lower":-9},"50":{"upper":null,"lower":null},"65":{"upper":0,"lower":-13},"80":{"upper":0,"lower":-13},"100":{"upper":0,"lower":-15},"120":{"upper":0,"lower":-15},"140":{"upper":0,"lower":-18},"160":{"upper":0,"lower":-18},"180":{"upper":0,"lower":-18},"200":{"upper":0,"lower":-20},"225":{"upper":0,"lower":-20},"250":{"upper":0,"lower":-20},"280":{"upper":0,"lower":-23},"315":{"upper":0,"lower":-23},"355":{"upper":0,"lower":-25},"400":{"upper":0,"lower":-25}},"h6":{"3":{"upper":0,"lower":-6},"6":{"upper":0,"lower":-8},"10":{"upper":0,"lower":-9},"18":{"upper":0,"lower":-11},"30":{"upper":0,"lower":-13},"50":{"upper":null,"lower":null},"65":{"upper":0,"lower":-19},"80":{"upper":0,"lower":-19},"100":{"upper":0,"lower":-22},"120":{"upper":0,"lower":-22},"140":{"upper":0,"lower":-25},"160":{"upper":0,"lower":-25},"180":{"upper":0,"lower":-25},"200":{"upper":0,"lower":-29},"225":{"upper":0,"lower":-29},"250":{"upper":0,"lower":-29},"280":{"upper":0,"lower":-32},"315":{"upper":0,"lower":-32},"355":{"upper":0,"lower":-36},"400":{"upper":0,"lower":-36}},"h7":{"3":{"upper":0,"lower":-10},"6":{"upper":0,"lower":-12},"10":{"upper":0,"lower":-15},"18":{"upper":0,"lower":-18},"30":{"upper":0,"lower":-21},"50":{"upper":null,"lower":null},"65":{"upper":0,"lower":-30},"80":{"upper":0,"lower":-30},"100":{"upper":0,"lower":-35},"120":{"upper":0,"lower":-35},"140":{"upper":0,"lower":-40},"160":{"upper":0,"lower":-40},"180":{"upper":0,"lower":-40},"200":{"upper":0,"lower":-46},"225":{"upper":0,"lower":-46},"250":{"upper":0,"lower":-46},"280":{"upper":0,"lower":-52},"315":{"upper":0,"lower":-52},"355":{"upper":0,"lower":-57},"400":{"upper":0,"lower":-57}},"h8":{"3":{"upper":0,"lower":-14},"6":{"upper":0,"lower":-18},"10":{"upper":0,"lower":-22},"18":{"upper":0,"lower":-27},"30":{"upper":0,"lower":-33},"50":{"upper":null,"lower":null},"65":{"upper":0,"lower":-46},"80":{"upper":0,"lower":-46},"100":{"upper":0,"lower":-54},"120":{"upper":0,"lower":-54},"140":{"upper":0,"lower":-63},"160":{"upper":0,"lower":-63},"180":{"upper":0,"lower":-63},"200":{"upper":0,"lower":-72},"225":{"upper":0,"lower":-72},"250":{"upper":0,"lower":-72},"280":{"upper":0,"lower":-81},"315":{"upper":0,"lower":-81},"355":{"upper":0,"lower":-89},"400":{"upper":0,"lower":-89}},"h9":{"3":{"upper":0,"lower":-25},"6":{"upper":0,"lower":-30},"10":{"upper":0,"lower":-36},"18":{"upper":0,"lower":-43},"30":{"upper":0,"lower":-52},"50":{"upper":null,"lower":null},"65":{"upper":0,"lower":-74},"80":{"upper":0,"lower":-74},"100":{"upper":0,"lower":-87},"120":{"upper":0,"lower":-87},"140":{"upper":0,"lower":-100},"160":{"upper":0,"lower":-100},"180":{"upper":0,"lower":-100},"200":{"upper":0,"lower":-115},"225":{"upper":0,"lower":-115},"250":{"upper":0,"lower":-115},"280":{"upper":0,"lower":-130},"315":{"upper":0,"lower":-130},"355":{"upper":0,"lower":-140},"400":{"upper":0,"lower":-140}},"h11":{"3":{"upper":0,"lower":-60},"6":{"upper":0,"lower":-75},"10":{"upper":0,"lower":-90},"18":{"upper":0,"lower":-110},"30":{"upper":0,"lower":-130},"50":{"upper":null,"lower":null},"65":{"upper":0,"lower":-190},"80":{"upper":0,"lower":-190},"100":{"upper":0,"lower":-220},"120":{"upper":0,"lower":-220},"140":{"upper":0,"lower":-250},"160":{"upper":0,"lower":-250},"180":{"upper":0,"lower":-250},"200":{"upper":0,"lower":-290},"225":{"upper":0,"lower":-290},"250":{"upper":0,"lower":-290},"280":{"upper":0,"lower":-320},"315":{"upper":0,"lower":-320},"355":{"upper":0,"lower":-360},"400":{"upper":0,"lower":-360}},"js5":{"3":{"upper":2,"lower":-2},"6":{"upper":2.5,"lower":-2.5},"10":{"upper":3,"lower":-3},"18":{"upper":4,"lower":-4},"30":{"upper":4.5,"lower":-4.5},"50":{"upper":null,"lower":null},"65":{"upper":6.5,"lower":-6.5},"80":{"upper":6.5,"lower":-6.5},"100":{"upper":7.5,"lower":-7.5},"120":{"upper":7.5,"lower":-7.5},"140":{"upper":9,"lower":-9},"160":{"upper":9,"lower":-9},"180":{"upper":9,"lower":-9},"200":{"upper":10,"lower":-10},"225":{"upper":10,"lower":-10},"250":{"upper":10,"lower":-10},"280":{"upper":11.5,"lower":-11.5},"315":{"upper":11.5,"lower":-11.5},"355":{"upper":12.5,"lower":-12.5},"400":{"upper":12.5,"lower":-12.5}},"js6":{"3":{"upper":3,"lower":-3},"6":{"upper":4,"lower":-4},"10":{"upper":4.5,"lower":-4.5},"18":{"upper":5.5,"lower":-5.5},"30":{"upper":6.5,"lower":-6.5},"50":{"upper":null,"lower":null},"65":{"upper":9.5,"lower":-9.5},"80":{"upper":9.5,"lower":-9.5},"100":{"upper":11,"lower":-11},"120":{"upper":11,"lower":-11},"140":{"upper":12.5,"lower":-12.5},"160":{"upper":12.5,"lower":-12.5},"180":{"upper":12.5,"lower":-12.5},"200":{"upper":14.5,"lower":-14.5},"225":{"upper":14.5,"lower":-14.5},"250":{"upper":14.5,"lower":-14.5},"280":{"upper":16,"lower":-16},"315":{"upper":16,"lower":-16},"355":{"upper":18,"lower":-18},"400":{"upper":18,"lower":-18}},"js13":{"3":{"upper":70,"lower":-70},"6":{"upper":90,"lower":-90},"10":{"upper":110,"lower":-110},"18":{"upper":135,"lower":-135},"30":{"upper":165,"lower":-165},"50":{"upper":null,"lower":null},"65":{"upper":230,"lower":-230},"80":{"upper":230,"lower":-230},"100":{"upper":270,"lower":-270},"120":{"upper":270,"lower":-270},"140":{"upper":315,"lower":-315},"160":{"upper":315,"lower":-315},"180":{"upper":315,"lower":-315},"200":{"upper":360,"lower":-360},"225":{"upper":360,"lower":-360},"250":{"upper":360,"lower":-360},"280":{"upper":405,"lower":-405},"315":{"upper":405,"lower":-405},"355":{"upper":445,"lower":-445},"400":{"upper":445,"lower":-445}},"js14":{"3":{"upper":125,"lower":-125},"6":{"upper":150,"lower":-150},"10":{"upper":180,"lower":-180},"18":{"upper":215,"lower":-215},"30":{"upper":260,"lower":-260},"50":{"upper":null,"lower":null},"65":{"upper":370,"lower":-370},"80":{"upper":370,"lower":-370},"100":{"upper":435,"lower":-435},"120":{"upper":435,"lower":-435},"140":{"upper":500,"lower":-500},"160":{"upper":500,"lower":-500},"180":{"upper":500,"lower":-500},"200":{"upper":575,"lower":-575},"225":{"upper":575,"lower":-575},"250":{"upper":575,"lower":-575},"280":{"upper":650,"lower":-650},"315":{"upper":650,"lower":-650},"355":{"upper":700,"lower":-700},"400":{"upper":700,"lower":-700}},"k5":{"3":{"upper":4,"lower":0},"6":{"upper":6,"lower":1},"10":{"upper":7,"lower":1},"18":{"upper":9,"lower":1},"30":{"upper":11,"lower":2},"50":{"upper":null,"lower":null},"65":{"upper":15,"lower":2},"80":{"upper":15,"lower":2},"100":{"upper":18,"lower":3},"120":{"upper":18,"lower":3},"140":{"upper":21,"lower":3},"160":{"upper":21,"lower":3},"180":{"upper":21,"lower":3},"200":{"upper":24,"lower":4},"225":{"upper":24,"lower":4},"250":{"upper":24,"lower":4},"280":{"upper":27,"lower":4},"315":{"upper":27,"lower":4},"355":{"upper":29,"lower":4},"400":{"upper":29,"lower":4}},"k6":{"3":{"upper":6,"lower":0},"6":{"upper":9,"lower":1},"10":{"upper":10,"lower":1},"18":{"upper":12,"lower":1},"30":{"upper":15,"lower":2},"50":{"upper":null,"lower":null},"65":{"upper":21,"lower":2},"80":{"upper":21,"lower":2},"100":{"upper":25,"lower":3},"120":{"upper":25,"lower":3},"140":{"upper":28,"lower":3},"160":{"upper":28,"lower":3},"180":{"upper":28,"lower":3},"200":{"upper":33,"lower":4},"225":{"upper":33,"lower":4},"250":{"upper":33,"lower":4},"280":{"upper":36,"lower":4},"315":{"upper":36,"lower":4},"355":{"upper":40,"lower":4},"400":{"upper":40,"lower":4}},"m5":{"3":{"upper":6,"lower":2},"6":{"upper":9,"lower":4},"10":{"upper":12,"lower":6},"18":{"upper":15,"lower":7},"30":{"upper":17,"lower":8},"50":{"upper":null,"lower":null},"65":{"upper":24,"lower":11},"80":{"upper":24,"lower":11},"100":{"upper":28,"lower":13},"120":{"upper":28,"lower":13},"140":{"upper":33,"lower":15},"160":{"upper":33,"lower":15},"180":{"upper":33,"lower":15},"200":{"upper":37,"lower":17},"225":{"upper":37,"lower":17},"250":{"upper":37,"lower":17},"280":{"upper":43,"lower":20},"315":{"upper":43,"lower":20},"355":{"upper":46,"lower":21},"400":{"upper":46,"lower":21}},"m6":{"3":{"upper":8,"lower":2},"6":{"upper":12,"lower":4},"10":{"upper":15,"lower":6},"18":{"upper":18,"lower":7},"30":{"upper":21,"lower":8},"50":{"upper":null,"lower":null},"65":{"upper":30,"lower":11},"80":{"upper":30,"lower":11},"100":{"upper":35,"lower":13},"120":{"upper":35,"lower":13},"140":{"upper":40,"lower":15},"160":{"upper":40,"lower":15},"180":{"upper":40,"lower":15},"200":{"upper":46,"lower":17},"225":{"upper":46,"lower":17},"250":{"upper":46,"lower":17},"280":{"upper":52,"lower":20},"315":{"upper":52,"lower":20},"355":{"upper":57,"lower":21},"400":{"upper":57,"lower":21}},"n5":{"3":{"upper":8,"lower":4},"6":{"upper":13,"lower":8},"10":{"upper":16,"lower":10},"18":{"upper":20,"lower":12},"30":{"upper":24,"lower":15},"50":{"upper":null,"lower":null},"65":{"upper":33,"lower":20},"80":{"upper":33,"lower":20},"100":{"upper":38,"lower":23},"120":{"upper":38,"lower":23},"140":{"upper":45,"lower":27},"160":{"upper":45,"lower":27},"180":{"upper":45,"lower":27},"200":{"upper":51,"lower":31},"225":{"upper":51,"lower":31},"250":{"upper":51,"lower":31},"280":{"upper":57,"lower":34},"315":{"upper":57,"lower":34},"355":{"upper":62,"lower":37},"400":{"upper":62,"lower":37}},"n6":{"3":{"upper":10,"lower":4},"6":{"upper":16,"lower":8},"10":{"upper":19,"lower":10},"18":{"upper":23,"lower":12},"30":{"upper":28,"lower":15},"50":{"upper":null,"lower":null},"65":{"upper":39,"lower":20},"80":{"upper":39,"lower":20},"100":{"upper":45,"lower":23},"120":{"upper":45,"lower":23},"140":{"upper":52,"lower":27},"160":{"upper":52,"lower":27},"180":{"upper":52,"lower":27},"200":{"upper":60,"lower":31},"225":{"upper":60,"lower":31},"250":{"upper":60,"lower":31},"280":{"upper":66,"lower":34},"315":{"upper":66,"lower":34},"355":{"upper":73,"lower":37},"400":{"upper":73,"lower":37}},"p6":{"3":{"upper":12,"lower":6},"6":{"upper":20,"lower":12},"10":{"upper":24,"lower":15},"18":{"upper":29,"lower":18},"30":{"upper":35,"lower":22},"50":{"upper":null,"lower":null},"65":{"upper":51,"lower":32},"80":{"upper":51,"lower":32},"100":{"upper":59,"lower":37},"120":{"upper":59,"lower":37},"140":{"upper":68,"lower":43},"160":{"upper":68,"lower":43},"180":{"upper":68,"lower":43},"200":{"upper":79,"lower":50},"225":{"upper":79,"lower":50},"250":{"upper":79,"lower":50},"280":{"upper":88,"lower":56},"315":{"upper":88,"lower":56},"355":{"upper":98,"lower":62},"400":{"upper":98,"lower":62}},"r6":{"3":{"upper":16,"lower":10},"6":{"upper":23,"lower":15},"10":{"upper":28,"lower":19},"18":{"upper":34,"lower":23},"30":{"upper":41,"lower":28},"50":{"upper":null,"lower":null},"65":{"upper":60,"lower":41},"80":{"upper":62,"lower":43},"100":{"upper":73,"lower":51},"120":{"upper":76,"lower":54},"140":{"upper":88,"lower":63},"160":{"upper":90,"lower":65},"180":{"upper":93,"lower":68},"200":{"upper":106,"lower":77},"225":{"upper":109,"lower":80},"250":{"upper":113,"lower":84},"280":{"upper":126,"lower":94},"315":{"upper":130,"lower":98},"355":{"upper":144,"lower":108},"400":{"upper":150,"lower":114}},"s6":{"3":{"upper":20,"lower":14},"6":{"upper":27,"lower":19},"10":{"upper":32,"lower":23},"18":{"upper":39,"lower":28},"30":{"upper":48,"lower":35},"50":{"upper":null,"lower":null},"65":{"upper":72,"lower":53},"80":{"upper":78,"lower":59},"100":{"upper":93,"lower":71},"120":{"upper":101,"lower":79},"140":{"upper":117,"lower":92},"160":{"upper":125,"lower":100},"180":{"upper":133,"lower":108},"200":{"upper":151,"lower":122},"225":{"upper":159,"lower":130},"250":{"upper":169,"lower":140},"280":{"upper":190,"lower":158},"315":{"upper":202,"lower":170},"355":{"upper":226,"lower":190},"400":{"upper":244,"lower":208}},"s7":{"3":{"upper":24,"lower":14},"6":{"upper":31,"lower":19},"10":{"upper":38,"lower":23},"18":{"upper":46,"lower":28},"30":{"upper":56,"lower":35},"50":{"upper":null,"lower":null},"65":{"upper":83,"lower":53},"80":{"upper":89,"lower":59},"100":{"upper":106,"lower":71},"120":{"upper":114,"lower":79},"140":{"upper":132,"lower":92},"160":{"upper":140,"lower":100},"180":{"upper":148,"lower":108},"200":{"upper":168,"lower":122},"225":{"upper":176,"lower":130},"250":{"upper":186,"lower":140},"280":{"upper":210,"lower":158},"315":{"upper":222,"lower":170},"355":{"upper":247,"lower":190},"400":{"upper":265,"lower":208}}}}
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

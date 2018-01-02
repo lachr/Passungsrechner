@@ -2,22 +2,29 @@
 
 <div>
     <div v-if="fitType=='clearance'">
-        Spielpassung<br>
-        maximales Spiel: {{ Math.abs(maxDiff) }}<br>
-        minimales Spiel: {{ Math.abs(minDiff) }}
+        <div class="text-lg">Spielpassung</div>
+        <div class="text-sm text-grey-light mb-4">Passungsart</div>
+        <div class="text-lg">{{ Math.abs(maxDiff) }} mm</div>
+        <div class="text-sm text-grey-light mb-4">max. Spiel</div>
+        <div class="text-lg">{{ Math.abs(minDiff) }} mm</div>
+        <div class="text-sm text-grey-light">min. Spiel</div>
     </div>
-    <div v-if="fitType=='transition'">
-        Presspassung<br>
-        maximales Übermass: {{ Math.abs(maxDiff) }}<br>
-        minimales Übermass: {{ Math.abs(minDiff) }}
+    <div v-if="fitType=='transition'" class="text-lg">
+        <div class="text-lg">Presspassung</div>
+        <div class="text-sm text-grey-light mb-4">Passungsart</div>
+        <div class="text-lg">{{ Math.abs(maxDiff) }} mm</div>
+        <div class="text-sm text-grey-light mb-4">max. Übermass</div>
+        <div class="text-lg">{{ Math.abs(minDiff) }} mm</div>
+        <div class="text-sm text-grey-light">min. Übermass</div>
     </div>
-    <div v-if="fitType=='interference'">
-        Übergangspassung<br>
-        Maximales Spiel: {{ Math.abs(maxDiff) }}<br>
-        Maximales Übermass: {{ Math.abs(minDiff) }}
-    </div>
-    
-    
+    <div v-if="fitType=='interference'" class="text-lg">
+        <div class="text-lg">Übergangspassung</div>
+        <div class="text-sm text-grey-light mb-4">Passungsart</div>
+        <div class="text-lg">{{ Math.abs(maxDiff) }} mm</div>
+        <div class="text-sm text-grey-light mb-4">max. Spiel</div>
+        <div class="text-lg">{{ Math.abs(minDiff) }} mm</div>
+        <div class="text-sm text-grey-light">max. Übermass</div>
+    </div>    
 </div>
 
 </template>

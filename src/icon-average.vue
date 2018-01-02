@@ -13,8 +13,8 @@
         </g>
         <defs>
             <path id="pd0" d="M14 7A7 7 0 1 1 0 7a7 7 0 0 1 14 0z"/>
-            <path id="path1_stroke_2x" d="M12 7a5 5 0 0 1-5 5v4a9 9 0 0 0 9-9h-4zm-5 5a5 5 0 0 1-5-5h-4a9 9 0 0 0 9 9v-4zM2 7a5 5 0 0 1 5-5v-4a9 9 0 0 0-9 9h4zm5-5a5 5 0 0 1 5 5h4a9 9 0 0 0-9-9v4z"/>
-            <path id="pf2" d="M0 0h18v2H0V0z"/>
+            <path fill="#606f7b" id="path1_stroke_2x" d="M12 7a5 5 0 0 1-5 5v4a9 9 0 0 0 9-9h-4zm-5 5a5 5 0 0 1-5-5h-4a9 9 0 0 0 9 9v-4zM2 7a5 5 0 0 1 5-5v-4a9 9 0 0 0-9 9h4zm5-5a5 5 0 0 1 5 5h4a9 9 0 0 0-9-9v4z"/>
+            <path fill="#606f7b" id="pf2" d="M0 0h18v2H0V0z"/>
         </defs>
     </svg>
 </template>
