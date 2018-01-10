@@ -219,12 +219,26 @@ window.Vue = __webpack_require__(4);
 
 Vue.component('illustration', __webpack_require__(8));
 Vue.component('fitType', __webpack_require__(11));
+Vue.component('savedFits', __webpack_require__(26));
 
 Vue.component('icon-average', __webpack_require__(14));
 Vue.component('icon-hole', __webpack_require__(16));
 Vue.component('icon-shaft', __webpack_require__(18));
 
 
+
+Vue.filter('fitTypeDe', function (value) {
+    switch (value) {
+        case "clearance":
+            return "Spielpassung";
+        case "transition":
+            return "Presspassung";
+        case "interference":
+            return "Übergangspassung";
+        default:
+            return "";
+    }
+});
 
 var app = new Vue({
     el: '#app',
@@ -241,8 +255,26 @@ var app = new Vue({
                 lowerDeviation: -0.036 //Unteres Abmass
             }
         },
+        savedFits: [],
         selectedHole: 'H8',
         selectedShaft: 'h9'
+    },
+    computed: {
+        fitType: function fitType() {
+            if (this.fit.hole.lowerDeviation - this.fit.shaft.upperDeviation >= 0) {
+                return 'clearance';
+            }
+            if (this.fit.hole.upperDeviation - this.fit.shaft.lowerDeviation <= 0) {
+                return 'transition';
+            }
+            return 'interference';
+        },
+        maxDiff: function maxDiff() {
+            return parseFloat(this.fit.hole.upperDeviation - this.fit.shaft.lowerDeviation).toFixed(4);
+        },
+        minDiff: function minDiff() {
+            return parseFloat(this.fit.hole.lowerDeviation + this.fit.shaft.upperDeviation).toFixed(4);
+        }
     },
     methods: {
         updateHole: function updateHole() {
@@ -263,7 +295,16 @@ var app = new Vue({
                     return i;
                 }
             }
-        }
+        },
+        saveFit: function saveFit() {
+            this.savedFits.push({
+                fitType: this.fitType,
+                fit: JSON.parse(JSON.stringify(this.fit)),
+                maxDiff: this.maxDiff,
+                minDiff: this.minDiff
+            });
+        },
+        deleteFit: function deleteFit(fit) {}
     }
 });
 
@@ -11796,24 +11837,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['fit'],
-    computed: {
-        fitType: function fitType() {
-            if (this.fit.hole.lowerDeviation - this.fit.shaft.upperDeviation >= 0) {
-                return 'clearance';
-            }
-            if (this.fit.hole.upperDeviation - this.fit.shaft.lowerDeviation <= 0) {
-                return 'transition';
-            }
-            return 'interference';
-        },
-        maxDiff: function maxDiff() {
-            return parseFloat(this.fit.hole.upperDeviation - this.fit.shaft.lowerDeviation).toFixed(4);
-        },
-        minDiff: function minDiff() {
-            return parseFloat(this.fit.hole.lowerDeviation + this.fit.shaft.upperDeviation).toFixed(4);
-        }
-    }
+    props: ['fit', 'fitType', 'maxDiff', 'minDiff']
 });
 
 /***/ }),
@@ -12292,6 +12316,202 @@ module.exports = {"hole":{"D10":{"3":{"upper":60,"lower":20},"6":{"upper":78,"lo
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(27)
+/* template */
+var __vue_template__ = __webpack_require__(28)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/savedFits.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-288eb5a0", Component.options)
+  } else {
+    hotAPI.reload("data-v-288eb5a0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['savedFits']
+});
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    _vm._l(_vm.savedFits, function(item) {
+      return _c("div", { staticClass: "flex" }, [
+        _c("div", [
+          _c("h4", [_vm._v("Nennmass")]),
+          _vm._v(
+            "\n            " + _vm._s(item.fit.basicSize) + " mm\n            "
+          ),
+          _c("h4", [_vm._v(_vm._s(_vm._f("fitTypeDe")(item.fitType)))]),
+          _vm._v("\n            max. Spiel! " + _vm._s(item.maxDiff) + "mm"),
+          _c("br"),
+          _vm._v(
+            "\n            min. Spiel! " + _vm._s(item.minDiff) + "mm\n        "
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("h4", [_vm._v("Bohrung")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex" }, [
+            _c("div", [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(item.fit.hole.upperDeviation) +
+                  "mm"
+              ),
+              _c("br"),
+              _vm._v(
+                "\n                    " +
+                  _vm._s(item.fit.hole.lowerDeviation) +
+                  "mm\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _vm._v("\n                    (H7)!!\n                ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("h4", [_vm._v("Welle")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex" }, [
+            _c("div", [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(item.fit.shaft.upperDeviation) +
+                  "mm"
+              ),
+              _c("br"),
+              _vm._v(
+                "\n                    " +
+                  _vm._s(item.fit.shaft.lowerDeviation) +
+                  "mm\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _vm._v("\n                    (H7)!!\n                ")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(0, true)
+      ])
+    })
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h4", [_vm._v("Entfernen")])])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-288eb5a0", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

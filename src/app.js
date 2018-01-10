@@ -2,12 +2,28 @@ window.Vue = require('vue');
 
 Vue.component('illustration', require('./illustration.vue'));
 Vue.component('fitType', require('./fitType.vue'));
+Vue.component('savedFits', require('./savedFits.vue'));
 
 Vue.component('icon-average', require('./icon-average.vue'));
 Vue.component('icon-hole', require('./icon-hole.vue'));
 Vue.component('icon-shaft', require('./icon-shaft.vue'));
 
 import isoTolerances from './tolerances.json';
+
+Vue.filter('fitTypeDe', function (value) {
+    switch(value)
+    {
+        case "clearance":
+            return "Spielpassung";
+        case "transition":
+            return "Presspassung";
+        case "interference":
+            return "Übergangspassung";
+        default:
+            return "";
+    }
+});
+
 
 const app = new Vue({
     el: '#app',
@@ -24,8 +40,22 @@ const app = new Vue({
                 lowerDeviation: -0.036,  //Unteres Abmass
             }
         },
+        savedFits: [],
         selectedHole: 'H8',
         selectedShaft: 'h9',
+    },
+    computed: {
+        fitType: function () {
+            if(this.fit.hole.lowerDeviation - this.fit.shaft.upperDeviation >= 0) { return 'clearance'}
+            if(this.fit.hole.upperDeviation - this.fit.shaft.lowerDeviation <= 0) { return 'transition'}
+            return 'interference';
+        },
+        maxDiff: function () {
+            return parseFloat(this.fit.hole.upperDeviation - this.fit.shaft.lowerDeviation).toFixed(4);
+        },
+        minDiff: function () {
+            return parseFloat(this.fit.hole.lowerDeviation + this.fit.shaft.upperDeviation).toFixed(4);
+        }
     },
     methods: {
         updateHole: function () {
@@ -46,6 +76,17 @@ const app = new Vue({
                     return i;
                 }
             }
-        } 
+        },
+        saveFit: function () {
+            this.savedFits.push({
+                fitType: this.fitType,
+                fit: JSON.parse(JSON.stringify(this.fit)),
+                maxDiff: this.maxDiff,
+                minDiff: this.minDiff
+            });
+        },
+        deleteFit: function(fit) {
+
+        }
     }
 });

@@ -69,10 +69,13 @@
         </div>
  
         <div class="flex bg-grey-darkest text-white p-4">
-            <fit-type class="w-1/2" :fit="fit"></fit-type>
+            <fit-type class="w-1/2" :fit="fit" :fit-type="fitType" :max-diff="maxDiff" :min-diff="minDiff"></fit-type>
             <illustration class="w-1/2" :fit="fit"></illustration>
         </div>
-            
+
+        <div><button @click="saveFit">Passung merken</button></div>
+        <saved-fits :saved-fits="savedFits"></saved-fits>
+
 
     </div>
 </body>

@@ -31,19 +31,6 @@
 
 <script>
     export default {
-        props: ['fit'],
-        computed: {
-            fitType: function () {
-                if(this.fit.hole.lowerDeviation - this.fit.shaft.upperDeviation >= 0) { return 'clearance'}
-                if(this.fit.hole.upperDeviation - this.fit.shaft.lowerDeviation <= 0) { return 'transition'}
-                return 'interference';
-            },
-            maxDiff: function () {
-                return parseFloat(this.fit.hole.upperDeviation - this.fit.shaft.lowerDeviation).toFixed(4);
-            },
-            minDiff: function () {
-                return parseFloat(this.fit.hole.lowerDeviation + this.fit.shaft.upperDeviation).toFixed(4);
-            }
-        }
+        props: ['fit', 'fitType', 'maxDiff','minDiff']
     }
 </script>
