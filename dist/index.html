@@ -67,12 +67,16 @@
             </div>
         </div>
  
-        <div class="flex bg-grey-darkest text-white p-4">
-            <fit-type class="w-1/2" :fit="fit" :fit-type="fitType" :max-diff="maxDiff" :min-diff="minDiff"></fit-type>
-            <illustration class="w-1/2" :fit="fit"></illustration>
+        <div class="bg-grey-darkest text-white p-4">
+            <div class="flex">
+                <fit-type class="w-1/2" :fit="fit" :fit-type="fitType" :max-diff="maxDiff" :min-diff="minDiff"></fit-type>
+                <illustration class="w-1/2" :fit="fit"></illustration>
+            </div>
+            <div class="pt-2">
+                <button @click="saveFit" class="border rounded p-2 text-white hover:bg-white hover:text-black">Passung merken</button>
+            </div>
         </div>
 
-        <div><button @click="saveFit">Passung merken</button></div>
         <saved-fits :saved-fits="savedFits"></saved-fits>
 
 

@@ -24,7 +24,7 @@
         <div class="text-sm text-grey-light mb-4">max. Spiel</div>
         <div class="text-lg">{{ Math.abs(minDiff) }} mm</div>
         <div class="text-sm text-grey-light">max. Übermass</div>
-    </div>    
+    </div>
 </div>
 
 </template>
