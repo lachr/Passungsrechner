@@ -81,6 +81,8 @@ const app = new Vue({
             this.savedFits.push({
                 fitType: this.fitType,
                 fit: JSON.parse(JSON.stringify(this.fit)),
+                selectedHole: this.selectedHole,
+                selectedShaft: this.selectedShaft,
                 maxDiff: this.maxDiff,
                 minDiff: this.minDiff
             });

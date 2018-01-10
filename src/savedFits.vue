@@ -1,13 +1,18 @@
 <template>
 
 <div>
-    <div v-for="item in savedFits" class="flex">
+    <div v-for="(item, index) in savedFits" class="flex">
         <div>
             <h4>Nennmass</h4>
             {{ item.fit.basicSize }} mm
             <h4>{{ item.fitType | fitTypeDe }}</h4>
-            max. Spiel! {{ item.maxDiff }}mm<br>
-            min. Spiel! {{ item.minDiff }}mm
+            <span v-if="item.fitType != 'transition'">max. Spiel</span>
+            <span v-if="item.fitType == 'transition'">max. Übermass</span> 
+            {{ Math.abs(item.maxDiff) }}mm<br>
+            <span v-if="item.fitType == 'clearance'">min. Spiel</span>
+            <span v-if="item.fitType == 'interference'">max. Übermass</span>
+            <span v-if="item.fitType == 'transition'">min. Übermass</span> 
+            {{ Math.abs(item.minDiff) }}mm
         </div>
         <div>
             <h4>Bohrung</h4>
@@ -17,7 +22,7 @@
                     {{ item.fit.hole.lowerDeviation }}mm
                 </div>
                 <div>
-                    (H7)!!
+                    {{ item.selectedHole }}
                 </div>
             </div>
             <h4>Welle</h4>
@@ -27,12 +32,12 @@
                     {{ item.fit.shaft.lowerDeviation }}mm
                 </div>
                 <div>
-                    (H7)!!
+                    {{ item.selectedShaft }}
                 </div>
             </div>
         </div>
         <div>
-            <h4>Entfernen</h4>
+            <h4 @click="savedFits.splice(index,1)">Entfernen</h4>
         </div>
     </div>
 </div>

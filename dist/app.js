@@ -300,6 +300,8 @@ var app = new Vue({
             this.savedFits.push({
                 fitType: this.fitType,
                 fit: JSON.parse(JSON.stringify(this.fit)),
+                selectedHole: this.selectedHole,
+                selectedShaft: this.selectedShaft,
                 maxDiff: this.maxDiff,
                 minDiff: this.minDiff
             });
@@ -12415,6 +12417,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['savedFits']
@@ -12430,7 +12437,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.savedFits, function(item) {
+    _vm._l(_vm.savedFits, function(item, index) {
       return _c("div", { staticClass: "flex" }, [
         _c("div", [
           _c("h4", [_vm._v("Nennmass")]),
@@ -12438,10 +12445,30 @@ var render = function() {
             "\n            " + _vm._s(item.fit.basicSize) + " mm\n            "
           ),
           _c("h4", [_vm._v(_vm._s(_vm._f("fitTypeDe")(item.fitType)))]),
-          _vm._v("\n            max. Spiel! " + _vm._s(item.maxDiff) + "mm"),
+          _vm._v(" "),
+          item.fitType != "transition"
+            ? _c("span", [_vm._v("max. Spiel")])
+            : _vm._e(),
+          _vm._v(" "),
+          item.fitType == "transition"
+            ? _c("span", [_vm._v("max. Übermass")])
+            : _vm._e(),
+          _vm._v(" \n            " + _vm._s(Math.abs(item.maxDiff)) + "mm"),
           _c("br"),
+          _vm._v(" "),
+          item.fitType == "clearance"
+            ? _c("span", [_vm._v("min. Spiel")])
+            : _vm._e(),
+          _vm._v(" "),
+          item.fitType == "interference"
+            ? _c("span", [_vm._v("max. Übermass")])
+            : _vm._e(),
+          _vm._v(" "),
+          item.fitType == "transition"
+            ? _c("span", [_vm._v("min. Übermass")])
+            : _vm._e(),
           _vm._v(
-            "\n            min. Spiel! " + _vm._s(item.minDiff) + "mm\n        "
+            " \n            " + _vm._s(Math.abs(item.minDiff)) + "mm\n        "
           )
         ]),
         _vm._v(" "),
@@ -12464,7 +12491,11 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", [
-              _vm._v("\n                    (H7)!!\n                ")
+              _vm._v(
+                "\n                    " +
+                  _vm._s(item.selectedHole) +
+                  "\n                "
+              )
             ])
           ]),
           _vm._v(" "),
@@ -12486,24 +12517,33 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", [
-              _vm._v("\n                    (H7)!!\n                ")
+              _vm._v(
+                "\n                    " +
+                  _vm._s(item.selectedShaft) +
+                  "\n                "
+              )
             ])
           ])
         ]),
         _vm._v(" "),
-        _vm._m(0, true)
+        _c("div", [
+          _c(
+            "h4",
+            {
+              on: {
+                click: function($event) {
+                  _vm.savedFits.splice(index, 1)
+                }
+              }
+            },
+            [_vm._v("Entfernen")]
+          )
+        ])
       ])
     })
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h4", [_vm._v("Entfernen")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

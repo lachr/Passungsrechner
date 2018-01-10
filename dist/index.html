@@ -27,43 +27,47 @@
         </div>
 
         <div class="mb-4 px-4">
-            <h2 class="mb-2 text-base font-bold">Bohrung</h2> 
-            <div class="relative">
-                <select v-on:change="updateHole" v-model="selectedHole" class="block appearance-none bg-white border border-grey text-black w-full py-2 px-2 pr-8 rounded-none">
-                    <option v-for="(item, index) in isoTolerances.hole" v-bind:value="index">
-                        {{ index }}
-                    </option>
-                </select>
-                <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-black">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            <h2 class="mb-2 text-base font-bold">Bohrung</h2>
+            <div class="flex">
+                <div class="flex item-center pt-2">
+                    <div class="text-2xl pr-2 pt-2">{{ fit.basicSize }}</div>
+                    <div>
+                        <input v-model.number.lazy="fit.hole.upperDeviation"><br>
+                        <input v-model.number.lazy="fit.hole.lowerDeviation">
+                    </div>
                 </div>
-            </div>
-            <div class="flex item-center pt-2">
-                <div class="text-2xl pr-2 pt-2">{{ fit.basicSize }}</div>
-                <div>
-                    <input v-model.number.lazy="fit.hole.upperDeviation"><br>
-                    <input v-model.number.lazy="fit.hole.lowerDeviation">
+                <div class="relative">
+                    <select v-on:change="updateHole" v-model="selectedHole" class="block appearance-none bg-white border border-grey text-black w-full py-2 px-2 pr-8 rounded-none">
+                        <option v-for="(item, index) in isoTolerances.hole" v-bind:value="index">
+                            {{ index }}
+                        </option>
+                    </select>
+                    <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-black">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="mb-4 px-4">
             <h2 class="mb-2 text-base font-bold">Welle</h2> 
-            <div class="relative">
-                <select v-on:change="updateShaft" v-model="selectedShaft" class="block appearance-none w-full bg-white border border-grey text-black py-2 px-2 pr-8 rounded-none">
-                    <option v-for="(item, index) in isoTolerances.shaft" v-bind:value="index">
-                        {{ index }}
-                    </option>
-                </select>
-                <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            <div class="flex">
+                <div class="flex item-center pt-2">
+                    <div class="text-2xl pr-2 pt-2">{{ fit.basicSize }}</div>
+                    <div>
+                        <input v-model.number.lazy="fit.shaft.upperDeviation"><br>
+                        <input v-model.number.lazy="fit.shaft.lowerDeviation">
+                    </div>
                 </div>
-            </div>
-            <div class="flex item-center pt-2">
-                <div class="text-2xl pr-2 pt-2">{{ fit.basicSize }}</div>
-                <div>
-                    <input v-model.number.lazy="fit.shaft.upperDeviation"><br>
-                    <input v-model.number.lazy="fit.shaft.lowerDeviation">
+                <div class="relative">
+                    <select v-on:change="updateShaft" v-model="selectedShaft" class="block appearance-none w-full bg-white border border-grey text-black py-2 px-2 pr-8 rounded-none">
+                        <option v-for="(item, index) in isoTolerances.shaft" v-bind:value="index">
+                            {{ index }}
+                        </option>
+                    </select>
+                    <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
                 </div>
             </div>
         </div>
