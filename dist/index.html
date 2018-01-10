@@ -6,11 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Passungsrechner</title>
     <link  href="dist/app.css" media="all" rel="stylesheet">
-<!--  
-    https://www.bossard.com/de/anwendungs-engineering/online-konverter-und-rechner/toleranzen-f%C3%BCr-wellen-und-bohrungen.aspx
-    Quelle für mehr Passungen
--->
-
 </head>
 <body>
     <div id="app">
@@ -28,15 +23,15 @@
 
         <div class="mb-4 px-4">
             <h2 class="mb-2 text-base font-bold">Bohrung</h2>
-            <div class="flex">
-                <div class="flex item-center pt-2">
+            <div class="inline-flex w-full">
+                <div class="inline-flex flex-none">
                     <div class="text-2xl pr-2 pt-2">{{ fit.basicSize }}</div>
-                    <div>
-                        <input v-model.number.lazy="fit.hole.upperDeviation"><br>
-                        <input v-model.number.lazy="fit.hole.lowerDeviation">
+                    <div class="">
+                        <input v-model.number.lazy="fit.hole.upperDeviation" size="8"><br>
+                        <input v-model.number.lazy="fit.hole.lowerDeviation" size="8">
                     </div>
                 </div>
-                <div class="relative">
+                <div class="relative flex-auto">
                     <select v-on:change="updateHole" v-model="selectedHole" class="block appearance-none bg-white border border-grey text-black w-full py-2 px-2 pr-8 rounded-none">
                         <option v-for="(item, index) in isoTolerances.hole" v-bind:value="index">
                             {{ index }}
@@ -51,15 +46,15 @@
 
         <div class="mb-4 px-4">
             <h2 class="mb-2 text-base font-bold">Welle</h2> 
-            <div class="flex">
-                <div class="flex item-center pt-2">
+            <div class="inline-flex w-full">
+                <div class="inline-flex flex-none">
                     <div class="text-2xl pr-2 pt-2">{{ fit.basicSize }}</div>
-                    <div>
-                        <input v-model.number.lazy="fit.shaft.upperDeviation"><br>
-                        <input v-model.number.lazy="fit.shaft.lowerDeviation">
+                    <div class="">
+                        <input v-model.number.lazy="fit.shaft.upperDeviation" size="8"><br>
+                        <input v-model.number.lazy="fit.shaft.lowerDeviation" size="8">
                     </div>
                 </div>
-                <div class="relative">
+                <div class="relative flex-auto">
                     <select v-on:change="updateShaft" v-model="selectedShaft" class="block appearance-none w-full bg-white border border-grey text-black py-2 px-2 pr-8 rounded-none">
                         <option v-for="(item, index) in isoTolerances.shaft" v-bind:value="index">
                             {{ index }}
