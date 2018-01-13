@@ -14,7 +14,7 @@
             <span class="text-grey-dark" v-if="item.fitType == 'transition'">min. Übermass</span> 
         </div>
         <div class="p-2 flex-1">
-            <h4>Bohrung</h4>
+            <h4 class="text-grey-dark">Bohrung</h4>
             <div class="flex">
                 <span class="text-lg pt-2 pr-1">
                     {{ item.fit.basicSize }}
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="p-2 flex-1">
-            <h4>Welle</h4>
+            <h4 class="text-grey-dark">Welle</h4>
             <div class="flex">
                 <span class="text-lg pt-2 pr-1">
                     {{ item.fit.basicSize }}

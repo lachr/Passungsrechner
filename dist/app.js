@@ -12100,7 +12100,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "p-2 flex-1" }, [
-          _c("h4", [_vm._v("Bohrung")]),
+          _c("h4", { staticClass: "text-grey-dark" }, [_vm._v("Bohrung")]),
           _vm._v(" "),
           _c("div", { staticClass: "flex" }, [
             _c("span", { staticClass: "text-lg pt-2 pr-1" }, [
@@ -12129,7 +12129,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "p-2 flex-1" }, [
-          _c("h4", [_vm._v("Welle")]),
+          _c("h4", { staticClass: "text-grey-dark" }, [_vm._v("Welle")]),
           _vm._v(" "),
           _c("div", { staticClass: "flex" }, [
             _c("span", { staticClass: "text-lg pt-2 pr-1" }, [
