@@ -18,7 +18,7 @@
                 <input v-model.number.lazy="fit.basicSize" class="appearance-none block w-full bg-white text-black border border-grey py-2 px-2 pr-8">
                 <span class="absolute pin-y pin-r flex items-center px-2 text-grey-darker">mm</span>
             </div>
-            <div class="pt-2 text-grey-dark">Die Toleranzen sind bis zu einem Nennmass von 400mm definiert.</div>
+            <div v-show="fit.basicSize > 399" class="mt-2 p-2 border border-yellow bg-yellow-light round text-yellow-darker">Die Toleranzen sind nur bis zu einem Nennmass von 400mm definiert!</div>
         </div>
 
         <div class="mb-4 px-4">
