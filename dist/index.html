@@ -29,8 +29,8 @@
                 <div class="inline-flex flex-none">
                     <div class="text-2xl pr-2 pt-2">{{ fit.basicSize }}</div>
                     <div class="">
-                        <input v-model.number.lazy="fit.hole.upperDeviation" size="8"><br>
-                        <input v-model.number.lazy="fit.hole.lowerDeviation" size="8">
+                        <input v-on:change="selectedHole = ''" v-model.number.lazy="fit.hole.upperDeviation" size="8"><br>
+                        <input v-on:change="selectedHole = ''" v-model.number.lazy="fit.hole.lowerDeviation" size="8">
                     </div>
                 </div>
                 <div class="relative flex-auto">
@@ -52,8 +52,8 @@
                 <div class="inline-flex flex-none">
                     <div class="text-2xl pr-2 pt-2">{{ fit.basicSize }}</div>
                     <div class="">
-                        <input v-model.number.lazy="fit.shaft.upperDeviation" size="8"><br>
-                        <input v-model.number.lazy="fit.shaft.lowerDeviation" size="8">
+                        <input v-on:change="selectedShaft = ''" v-model.number.lazy="fit.shaft.upperDeviation" size="8"><br>
+                        <input v-on:change="selectedShaft = ''" v-model.number.lazy="fit.shaft.lowerDeviation" size="8">
                     </div>
                 </div>
                 <div class="relative flex-auto">
