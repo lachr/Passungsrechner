@@ -12058,8 +12058,8 @@ var render = function() {
   return _c(
     "div",
     _vm._l(_vm.savedFits, function(item, index) {
-      return _c("div", { staticClass: "inline-flex border-b" }, [
-        _c("div", { staticClass: "p-2" }, [
+      return _c("div", { staticClass: "inline-flex border-b w-full" }, [
+        _c("div", { staticClass: "p-2 flex-1" }, [
           _c("h4", [_vm._v(_vm._s(_vm._f("fitTypeDe")(item.fitType)))]),
           _vm._v(
             "\n            " + _vm._s(Math.abs(item.maxDiff)) + "\n            "
@@ -12099,7 +12099,7 @@ var render = function() {
             : _vm._e()
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "p-2" }, [
+        _c("div", { staticClass: "p-2 flex-1" }, [
           _c("h4", [_vm._v("Bohrung")]),
           _vm._v(" "),
           _c("div", { staticClass: "flex" }, [
@@ -12128,7 +12128,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "p-2" }, [
+        _c("div", { staticClass: "p-2 flex-1" }, [
           _c("h4", [_vm._v("Welle")]),
           _vm._v(" "),
           _c("div", { staticClass: "flex" }, [
