@@ -5,10 +5,6 @@ Vue.component('illustration', require('./illustration.vue'));
 Vue.component('fitType', require('./fitType.vue'));
 Vue.component('savedFits', require('./savedFits.vue'));
 
-Vue.component('icon-average', require('./icon-average.vue'));
-Vue.component('icon-hole', require('./icon-hole.vue'));
-Vue.component('icon-shaft', require('./icon-shaft.vue'));
-
 import isoTolerances from './tolerances.json';
 
 Vue.filter('fitTypeDe', function (value) {
