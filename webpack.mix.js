@@ -3,8 +3,6 @@ var tailwindcss = require('tailwindcss');
 
 
 mix.js('src/app.js', 'dist/')
-   .sass('src/app.scss', 'dist/')
-   .options({
-    processCssUrls: false,
-    postCss: [ tailwindcss('./tailwind.js') ]
-  });
+   .postCss('src/app.css', 'dist/', [
+      tailwindcss('./tailwind.js'),
+   ]);
