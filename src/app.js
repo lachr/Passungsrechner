@@ -1,4 +1,5 @@
 window.Vue = require('vue');
+Vue.config.devtools = true;
 
 Vue.component('illustration', require('./illustration.vue'));
 Vue.component('fitType', require('./fitType.vue'));
@@ -71,8 +72,10 @@ const app = new Vue({
             this.fit.shaft.lowerDeviation = parseFloat(tolClass[range].lower/1000).toFixed(4);
         },
         getRange: function (data) {
+            console.log(data);
             for(var i in data){
                 if(parseFloat(this.fit.basicSize) <= parseFloat(i)) {
+                    console.log('return i', i);
                     return i;
                 }
             }
