@@ -16,7 +16,7 @@
         </div>
 
         <div class="mb-8 px-4 max-w-md mx-auto">
-            <h2 class="mb-2 text-lg font-normal text-purple-dark">Nennmass</h2>
+            <h2 class="mb-2 text-lg font-thin text-purple-dark">Nennmass</h2>
             <div class="relative w-full p-4 bg-white rounded shadow border border-grey-light">
                 <input v-model.number.lazy="fit.basicSize" class="appearance-none block w-full text-black py-2 border-b px-2 pr-8">
                 <span class="absolute pin-y pin-r flex items-center px-2 mr-4 text-grey-darker">mm</span>
@@ -25,7 +25,7 @@
         </div>
 
         <div class="mb-8 px-4 max-w-md mx-auto">
-            <h2 class="mb-2 text-lg font-normal text-purple-dark">Bohrung</h2>
+            <h2 class="mb-2 text-lg font-thin text-purple-dark">Bohrung</h2>
             <div class="inline-flex w-full p-4 bg-white rounded shadow border border-grey-light">
                 <div class="inline-flex flex-none">
                     <div class="text-2xl pr-2 pt-2">{{ fit.basicSize }}</div>
@@ -48,7 +48,7 @@
         </div>
 
         <div class="mb-16 px-4 max-w-md mx-auto">
-            <h2 class="mb-2 text-lg font-normal text-purple-dark">Welle</h2> 
+            <h2 class="mb-2 text-lg font-thin text-purple-dark">Welle</h2> 
             <div class="inline-flex w-full p-4 bg-white rounded shadow border border-grey-light">
                 <div class="inline-flex flex-none">
                     <div class="text-2xl pr-2 pt-2">{{ fit.basicSize }}</div>
@@ -71,7 +71,7 @@
         </div>
  
         <div class="px-4 max-w-md mx-auto">
-            <h2 class="mb-2 text-lg font-normal text-purple-dark">Resultat</h2> 
+            <h2 class="mb-2 text-lg font-thin text-purple-dark">Resultat</h2> 
         </div>
         <div class="bg-grey-lighter mb-8 border-t border-b p-4">
             <div class="max-w-md px-4 mx-auto">
@@ -85,7 +85,7 @@
             </div>
         </div>
 
-        <div class="p-4 max-w-md mx-auto">
+        <div class="p-4 mb-16 max-w-md mx-auto">
             <div v-show="savedFits.length > 0" class="p-4 border border-yellow shadow bg-yellow-lighter rounded-t text-yellow-darker">
                 Beim schliessen des Browsers gehen die gespeicherten Toleranzen verloren!
             </div>
@@ -93,6 +93,14 @@
                 <saved-fits :saved-fits="savedFits"></saved-fits>
             </div>
         </div>
+
+
+        <div class="mb-16 px-4 max-w-md mx-auto">
+            <h2 class="mb-2 text-lg font-thin text-purple-dark">Auswahlhilfe</h2> 
+            <select-fit/>
+        </div>
+
+
 
         <div class="p-4 mt-6 max-w-md mx-auto border-t text-grey-dark text-sm">
             <a href="https://github.com/lachr/Passungsrechner">
@@ -102,8 +110,6 @@
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" height="16px" viewBox="163.03 26.5 392.75 50" xml:space="preserve"><g id="layer1" fill="#333"><g><path d="M168.52,70.07c0.55-0.82,1.37-1.76,2.42-2.8c1.04-1.04,2.36-2.14,3.9-3.41c1.37-1.1,2.53-2.09,3.46-2.91    c0.93-0.82,1.7-1.65,2.25-2.36s0.99-1.48,1.21-2.2c0.22-0.71,0.38-1.48,0.38-2.36c0-1.32-0.38-2.42-1.15-3.13    c-0.77-0.77-1.81-1.1-3.24-1.1c-0.6,0-1.15,0.11-1.7,0.33s-0.99,0.6-1.43,1.04c-0.38,0.44-0.77,1.15-1.04,1.87    c-0.27,0.71-0.44,1.43-0.49,2.53h-5.77c0.11-1.65,0.44-3.13,1.04-4.4c0.55-1.26,1.26-2.42,2.2-3.35c0.93-0.88,1.98-1.65,3.24-2.09    c1.26-0.49,2.58-0.77,4.12-0.77c1.59,0,3.02,0.22,4.29,0.71s2.31,1.1,3.19,1.92c0.88,0.82,1.48,1.76,1.98,2.91    c0.44,1.1,0.66,2.31,0.66,3.63c0,1.21-0.16,2.31-0.49,3.3c-0.33,0.99-0.82,1.98-1.43,2.91c-0.6,0.82-1.48,1.87-2.75,3.02    c-1.21,1.15-2.69,2.47-4.45,3.96c-1.04,0.88-1.92,1.76-2.69,2.47c-0.77,0.66-1.32,1.21-1.65,1.76h13.74V76l9.45-4.78l8.52-20.55    H191.6v-5.49h20.33V26.5h-48.9v50h3.68C166.71,74.03,167.31,71.88,168.52,70.07z"></path></g></g></svg>
             </a>
         </div>
-
-
 
     </div>
 </body>

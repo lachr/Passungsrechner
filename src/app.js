@@ -4,6 +4,7 @@ Vue.config.devtools = true;
 Vue.component('illustration', require('./illustration.vue'));
 Vue.component('fitType', require('./fitType.vue'));
 Vue.component('savedFits', require('./savedFits.vue'));
+Vue.component('selectFit', require('./selectFit.vue'));
 
 import isoTolerances from './tolerances.json';
 
