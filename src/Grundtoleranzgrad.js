@@ -26,7 +26,7 @@ export default class Grundtoleranzgrad {
 
     getGrundtoleranzgradeFromNennmassbereich() {
         let result = this.constructor.Grundtoleranzgrade()
-        result = result[Object.keys(result)[7]];
+        result = result[Object.keys(result)[this.getNennmassbereich()]];
         return result
     }
 
