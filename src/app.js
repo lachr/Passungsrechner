@@ -9,12 +9,18 @@ Vue.component('selectFit', require('./selectFit.vue'))
 import isoTolerances from './tolerances.json'
 import Grundtoleranzgrad from './Grundtoleranzgrad.js'
 import TgBohrung from './TgBohrung.js'
+import TgWelle from './TgWelle.js'
 
-var bohrung = new TgBohrung(100,'F')
-console.log(bohrung.getNennmassbereiche());
-console.log(bohrung.getNennmassbereich());
-console.log(bohrung.getGrundtoleranzFromNennmassbereich());
-console.log(bohrung.getToleranzgrad());
+var welle = new TgWelle(100,'e')
+console.log(welle.getNennmassbereiche());
+console.log(welle.getNennmassbereich());
+console.log(welle.getGrundtoleranzFromNennmassbereich());
+console.log(welle.getToleranzgrad());
+// var bohrung = new TgBohrung(100,'F')
+// console.log(bohrung.getNennmassbereiche());
+// console.log(bohrung.getNennmassbereich());
+// console.log(bohrung.getGrundtoleranzFromNennmassbereich());
+// console.log(bohrung.getToleranzgrad());
 // var tol1 = new Grundtoleranzgrad(100,7)
 // console.log(tol1.getNennmassbereiche());
 // console.log(tol1.getNennmassbereich());
