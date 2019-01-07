@@ -1,12 +1,19 @@
-window.Vue = require('vue');
-Vue.config.devtools = true;
+window.Vue = require('vue')
+Vue.config.devtools = true
 
-Vue.component('illustration', require('./illustration.vue'));
-Vue.component('fitType', require('./fitType.vue'));
-Vue.component('savedFits', require('./savedFits.vue'));
-Vue.component('selectFit', require('./selectFit.vue'));
+Vue.component('illustration', require('./illustration.vue'))
+Vue.component('fitType', require('./fitType.vue'))
+Vue.component('savedFits', require('./savedFits.vue'))
+Vue.component('selectFit', require('./selectFit.vue'))
 
-import isoTolerances from './tolerances.json';
+import isoTolerances from './tolerances.json'
+import Grundtoleranzgrad from './Grundtoleranzgrad.js'
+
+var tol1 = new Grundtoleranzgrad(100,7)
+console.log(tol1.getNennmassbereiche());
+console.log(tol1.getNennmassbereich());
+console.log(tol1.getGrundtoleranzgradeFromNennmassbereich());
+console.log(tol1.getGrundtoleranzgrad());
 
 Vue.filter('fitTypeDe', function (value) {
     switch(value)
