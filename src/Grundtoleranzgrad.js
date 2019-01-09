@@ -19,9 +19,13 @@ export default class Grundtoleranzgrad {
     }
 
     getNennmassbereich() {
-        return this.getNennmassbereiche().findIndex(function(value) {
+        let result =  this.getNennmassbereiche().findIndex(function(value) {
             return this.nennmass > value['min'] && this.nennmass <= value['max']
         }.bind(this))
+        if(result == -1){
+            throw { name: 'Fehler Grundtoleranzgrad', message: 'Nennmass ist ausserhalb des gültigen Bereichs (0<N<=3150'}
+        }
+        return result
     }
 
     getGrundtoleranzgradeFromNennmassbereich() {
@@ -31,7 +35,11 @@ export default class Grundtoleranzgrad {
     }
 
     getGrundtoleranzgrad() {
-        return this.getGrundtoleranzgradeFromNennmassbereich()[this.toleranzgrad]
+        let result = this.getGrundtoleranzgradeFromNennmassbereich()[this.toleranzgrad]
+        if(!result){
+            throw { name: 'Fehler Grundtoleranzgrad', message: 'Toleranzgrad ist ausserhalb des gültigen Bereichs'}
+        }
+        return result
     }
 
 }
