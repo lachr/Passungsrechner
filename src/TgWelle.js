@@ -23,9 +23,13 @@ export default class TgWelle {
     }
 
     getNennmassbereich() {
-        return this.getNennmassbereiche().findIndex(function(value) {
+        let result = this.getNennmassbereiche().findIndex(function(value) {
             return this.nennmass > value['min'] && this.nennmass <= value['max']
         }.bind(this))
+        if(result == -1){
+            throw { name: 'Fehler Toleranzgrad Welle', message: 'Nennmass ist ausserhalb des gültigen Bereichs (3<N<=500'}
+        }
+        return result
     }
 
     getGrundtoleranzFromNennmassbereich() {
@@ -35,7 +39,11 @@ export default class TgWelle {
     }
 
     getToleranzgrad() {
-        return this.getGrundtoleranzFromNennmassbereich()[this.toleranzgrad]
+        let result = this.getGrundtoleranzFromNennmassbereich()[this.toleranzgrad]
+        if(!result){
+            throw { name: 'Fehler Toleranzgrad Welle', message: 'Toleranzgrad ist ausserhalb des gültigen Bereichs'}
+        }
+        return result
     }
 
 }
