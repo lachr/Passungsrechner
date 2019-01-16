@@ -1,8 +1,8 @@
-export default class TgBohrung {
+export default class GrenzabmassBohrung {
 
     constructor(n, tg) {
         this.nennmass = parseFloat(n)
-        this.toleranzgrad = tg
+        this.toleranzfeldlage = tg
     }
     
     static Toleranzgrade(){
@@ -27,23 +27,30 @@ export default class TgBohrung {
             return this.nennmass > value['min'] && this.nennmass <= value['max']
         }.bind(this))
         if(result == -1){
-            throw { name: 'Fehler Toleranzgrad Bohrung', message: 'Nennmass ist ausserhalb des gültigen Bereichs (3<N<=500'}
+            throw new RangeError('Nennmass ist ausserhalb des gültigen Bereichs (3<N<=500')
         }
         return result
     }
 
-    getGrundtoleranzFromNennmassbereich() {
+    getGrenzabmassFromNennmassbereich() {
         let result = this.getToleranzgrade()
         result = result[Object.keys(result)[this.getNennmassbereich()]];
         return result
     }
 
-    getToleranzgrad() {
-        let result =  this.getGrundtoleranzFromNennmassbereich()[this.toleranzgrad]
-        if(!result){
-            throw { name: 'Fehler Toleranzgrad Bohrung', message: 'Toleranzgrad ist ausserhalb des gültigen Bereichs'}
+    get() {
+        
+        let result =  this.getGrenzabmassFromNennmassbereich()[this.toleranzfeldlage]
+        if(!result || result == '-'){
+            throw new RangeError('Toleranzgrad ist ausserhalb des gültigen Bereichs')
         }
-        return result
+
+        let ei = ['C','D','E','F','G','H']
+        if(ei.includes(this.toleranzfeldlage)){
+            return { EI: result }
+        }
+
+        return { ES: result}
     }
 
 }

@@ -39,7 +39,7 @@ export default class Grundtoleranzgrad {
         if(!result){
             throw new RangeError('Toleranzgrad ist ausserhalb des gültigen Bereichs')
         }
-        return result
+        return {IT: result}
     }
 
 }
