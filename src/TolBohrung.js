@@ -1,4 +1,4 @@
-import Grundtoleranzgrad from './Grundtoleranzgrad'
+import Grundtoleranzgrad from './components/Grundtoleranzgrad'
 import TgBohrung from './TgBohrung.js'
 
 export default class TolBohrung {

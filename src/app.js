@@ -6,26 +6,26 @@ Vue.component('fitType', require('./fitType.vue'))
 Vue.component('savedFits', require('./savedFits.vue'))
 Vue.component('selectFit', require('./selectFit.vue'))
 
-import isoTolerances from './tolerances.json'
-import Grundtoleranzgrad from './Grundtoleranzgrad.js'
-import TgBohrung from './TgBohrung.js'
-import TgWelle from './TgWelle.js'
+// import isoTolerances from './tolerances.json'
 
-var welle = new TgWelle(100,'e')
-console.log(welle.getNennmassbereiche());
-console.log(welle.getNennmassbereich());
-console.log(welle.getGrundtoleranzFromNennmassbereich());
-console.log(welle.getToleranzgrad());
-// var bohrung = new TgBohrung(100,'F')
-// console.log(bohrung.getNennmassbereiche());
-// console.log(bohrung.getNennmassbereich());
-// console.log(bohrung.getGrundtoleranzFromNennmassbereich());
-// console.log(bohrung.getToleranzgrad());
-// var tol1 = new Grundtoleranzgrad(100,7)
-// console.log(tol1.getNennmassbereiche());
-// console.log(tol1.getNennmassbereich());
-// console.log(tol1.getGrundtoleranzgradeFromNennmassbereich());
-// console.log(tol1.getGrundtoleranzgrad());
+
+// import Passung from './Passung.js';
+// import Bohrung from './TolBohrung.js';
+
+import Toleranz from './components/Toleranz.js';
+var tol = new Toleranz(18.1, 'Q7')
+console.log(tol.getAbmass())
+
+// try {
+//     var bor = new Bohrung(100,'H',8)
+//     console.log(bor.get())
+//     var tol = new Passung(100,'J',7,'z',9)
+//     console.log(tol.get());
+   
+// }
+// catch (e) {
+//     console.log(e);
+// }
 
 Vue.filter('fitTypeDe', function (value) {
     switch(value)
@@ -45,7 +45,7 @@ Vue.filter('fitTypeDe', function (value) {
 const app = new Vue({
     el: '#app',
     data: {
-        isoTolerances: isoTolerances,
+        //isoTolerances: isoTolerances,
         fit: {
             basicSize: 30.0, // Nennmass
             hole: {

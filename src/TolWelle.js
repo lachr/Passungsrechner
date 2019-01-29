@@ -1,4 +1,4 @@
-import Grundtoleranzgrad from './Grundtoleranzgrad'
+import Grundtoleranzgrad from './components/Grundtoleranzgrad'
 import TgWelle from './TgWelle.js'
 
 export default class TolWelle {
