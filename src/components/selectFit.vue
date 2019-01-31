@@ -36,7 +36,7 @@
 </template>
 
 <script>
-    import fits from './fits.json';
+    import fits from '../data/fits.json';
     export default {
         data: function () {
             return {

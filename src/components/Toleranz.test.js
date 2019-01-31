@@ -2,6 +2,7 @@ import Toleranz from './Toleranz.js'
 
 test('Abmass 100H7', () => {
     expect(new Toleranz(100, 'H7').getAbmass()).toMatchObject({
+        nennmass:100,
         es: 35,
         ei: 0
     });
@@ -9,6 +10,7 @@ test('Abmass 100H7', () => {
 
 test('Abmass 50P9', () => {
     expect(new Toleranz(50, 'P9').getAbmass()).toMatchObject({
+        nennmass:50,
         es: -26,
         ei: -88
     });
@@ -16,6 +18,7 @@ test('Abmass 50P9', () => {
 
 test('Abmass 188e8', () => {
     expect(new Toleranz(188, 'e8').getAbmass()).toMatchObject({
+        nennmass:188,
         es: -100,
         ei: -172
     });

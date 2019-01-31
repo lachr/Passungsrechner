@@ -19,7 +19,7 @@
 
 <script>
     export default {
-        props: ['fit'],
+        props: ['passung'],
         data: function () {
             return {
                 height: 100,
@@ -34,24 +34,24 @@
         computed: {
             scale: function () {
                 var maxDiff = this.getMaxDiff(
-                    this.fit.hole.upperDeviation,
-                    this.fit.hole.lowerDeviation,
-                    this.fit.shaft.upperDeviation,
-                    this.fit.shaft.lowerDeviation
+                    parseFloat(this.passung.GoB),
+                    parseFloat(this.passung.GuB),
+                    parseFloat(this.passung.GoW),
+                    parseFloat(this.passung.GuW)
                 );
                 return 1+(this.height-(maxDiff))/(maxDiff);
             },
             holeTopY: function () {
-                return Math.round(this.height/2-this.fit.hole.upperDeviation*this.scale);
+                return Math.round(this.height/2-parseFloat(this.passung.GoB)*this.scale);
             },
             holeHeight: function () {
-                return Math.round((this.fit.hole.upperDeviation-this.fit.hole.lowerDeviation)*this.scale);
+                return Math.round((parseFloat(this.passung.GoB)-parseFloat(this.passung.GuB))*this.scale);
             },
             shaftTopY: function () {
-                return Math.round(this.height/2-this.fit.shaft.upperDeviation*this.scale);
+                return Math.round(this.height/2-parseFloat(this.passung.GoW)*this.scale);
             },
             shaftHeight: function () {
-                return Math.round((this.fit.shaft.upperDeviation-this.fit.shaft.lowerDeviation)*this.scale);
+                return Math.round((parseFloat(this.passung.GoW)-parseFloat(this.passung.GuW))*this.scale);
             },
         }
     }

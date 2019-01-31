@@ -1,4 +1,4 @@
-import toleranzen from '../tolerances5.json';
+import toleranzen from '../data/tolerances.json';
 
 export default class Toleranz {
 
@@ -29,6 +29,7 @@ export default class Toleranz {
         Object.keys(tmp).map(function(key, index) {
             if(tmp[key]['toleranzklasse'] == this.toleranzklasse) {
                 result = tmp[key]
+                result.nennmass = this.nennmass
             }
         }.bind(this));
 

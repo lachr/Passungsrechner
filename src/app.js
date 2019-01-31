@@ -1,113 +1,68 @@
 window.Vue = require('vue')
 Vue.config.devtools = true
 
-Vue.component('illustration', require('./illustration.vue'))
-Vue.component('fitType', require('./fitType.vue'))
-Vue.component('savedFits', require('./savedFits.vue'))
-Vue.component('selectFit', require('./selectFit.vue'))
+import Passung from './components/Passung.js'
+import Toleranz from './components/Toleranz.js'
+
+Vue.component('illustration', require('./components/illustration'))
+Vue.component('savedFits', require('./components/savedFits'))
+Vue.component('selectFit', require('./components/selectFit'))
 
 // import isoTolerances from './tolerances.json'
 
-
-// import Passung from './Passung.js';
-// import Bohrung from './TolBohrung.js';
-
-import Toleranz from './components/Toleranz.js';
-var tol = new Toleranz(18.1, 'Q7')
-console.log(tol.getAbmass())
-
-// try {
-//     var bor = new Bohrung(100,'H',8)
-//     console.log(bor.get())
-//     var tol = new Passung(100,'J',7,'z',9)
-//     console.log(tol.get());
-   
+// try {  
 // }
 // catch (e) {
 //     console.log(e);
 // }
 
-Vue.filter('fitTypeDe', function (value) {
-    switch(value)
-    {
-        case "clearance":
-            return "Spielpassung";
-        case "transition":
-            return "Presspassung";
-        case "interference":
-            return "Übergangspassung";
-        default:
-            return "";
-    }
-});
 
 
 const app = new Vue({
     el: '#app',
     data: {
-        //isoTolerances: isoTolerances,
-        fit: {
-            basicSize: 30.0, // Nennmass
-            hole: {
-                upperDeviation: 0.033,  //Oberes Abmass
-                lowerDeviation: 0,  //Unteres Abmass
-            },
-            shaft: {
-                upperDeviation: 0,  //Oberes Abmass
-                lowerDeviation: -0.036,  //Unteres Abmass
-            }
+        form: {
+            nennmass: 30.0,
+            toleranzklasseBohrung: 'H7',
+            toleranzklasseWelle: 'p6'
         },
         savedFits: [],
         selectedHole: 'H8',
         selectedShaft: 'h9',
     },
     computed: {
-        fitType: function () {
-            if(this.fit.hole.lowerDeviation - this.fit.shaft.upperDeviation >= 0) { return 'clearance'}
-            if(this.fit.hole.upperDeviation - this.fit.shaft.lowerDeviation <= 0) { return 'transition'}
-            return 'interference';
+        abmassBohrung: function () {
+            return new Toleranz(this.form.nennmass,this.form.toleranzklasseBohrung).getAbmass()
         },
-        maxDiff: function () {
-            return parseFloat(this.fit.hole.upperDeviation - this.fit.shaft.lowerDeviation).toFixed(4);
+        abmassWelle: function () {
+            return new Toleranz(this.form.nennmass,this.form.toleranzklasseWelle).getAbmass()
         },
-        minDiff: function () {
-            return parseFloat(this.fit.hole.lowerDeviation + this.fit.shaft.upperDeviation).toFixed(4);
-        }
+        toleranzklassenBohrung: function () {
+            return new Toleranz(this.form.nennmass, '').getToleranzklassen().filter(function(element) {
+                return element.toleranzklasse == element.toleranzklasse.toUpperCase()
+            }).map(function (element) {
+                return element.toleranzklasse
+            })
+        },
+        toleranzklassenWelle: function () {
+            return new Toleranz(this.form.nennmass, '').getToleranzklassen().filter(function(element) {
+                return element.toleranzklasse == element.toleranzklasse.toLowerCase()
+            }).map(function (element) {
+                return element.toleranzklasse
+            })
+        },
+        passung: function () {
+            return new Passung(new Toleranz(this.form.nennmass, this.form.toleranzklasseBohrung).getAbmass(),new Toleranz(this.form.nennmass, this.form.toleranzklasseWelle).getAbmass()).get()
+        },
     },
     methods: {
-        updateHole: function () {
-            var tolClass = this.isoTolerances.hole[this.selectedHole];
-            var range = this.getRange(tolClass);
-            this.fit.hole.upperDeviation = parseFloat(tolClass[range].upper/1000).toFixed(4);
-            this.fit.hole.lowerDeviation = parseFloat(tolClass[range].lower/1000).toFixed(4);
-        },
-        updateShaft: function () {
-            var tolClass = this.isoTolerances.shaft[this.selectedShaft];
-            var range = this.getRange(tolClass);
-            this.fit.shaft.upperDeviation = parseFloat(tolClass[range].upper/1000).toFixed(4);
-            this.fit.shaft.lowerDeviation = parseFloat(tolClass[range].lower/1000).toFixed(4);
-        },
-        getRange: function (data) {
-            console.log(data);
-            for(var i in data){
-                if(parseFloat(this.fit.basicSize) <= parseFloat(i)) {
-                    console.log('return i', i);
-                    return i;
-                }
-            }
-        },
+        
         saveFit: function () {
             this.savedFits.push({
-                fitType: this.fitType,
-                fit: JSON.parse(JSON.stringify(this.fit)),
-                selectedHole: this.selectedHole,
-                selectedShaft: this.selectedShaft,
-                maxDiff: this.maxDiff,
-                minDiff: this.minDiff
+                passung
             });
         },
         deleteFit: function(fit) {
-
         }
     }
 });

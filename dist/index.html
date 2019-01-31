@@ -19,30 +19,30 @@
         <div class="mb-8 px-4 max-w-md mx-auto">
             <h2 class="mb-2 text-lg font-thin text-purple-dark">Nennmass</h2>
             <div class="relative w-full p-4 bg-white rounded shadow border border-grey-light">
-                <input v-model.number.lazy="fit.basicSize" class="appearance-none block w-full text-black py-2 border-b px-2 pr-8">
+                <input v-model.number.lazy="form.nennmass" class="appearance-none block w-full text-black py-2 border-b px-2 pr-8">
                 <span class="absolute pin-y pin-r flex items-center px-2 mr-4 text-grey-darker">mm</span>
             </div>
-            <div v-show="fit.basicSize > 399" class="p-4 border border-yellow bg-yellow-lighter round text-yellow-darker rounded shadow">Die Toleranzen sind nur bis zu einem Nennmass von 400mm definiert!</div>
+            <div class="p-4 border border-yellow bg-yellow-lighter round text-yellow-darker rounded shadow">Die Toleranzen sind nur bis zu einem Nennmass von 400mm definiert!</div>
         </div>
 
         <div class="mb-8 px-4 max-w-md mx-auto">
             <h2 class="mb-2 text-lg font-thin text-purple-dark">Bohrung</h2>
             <div class="inline-flex w-full p-4 bg-white rounded shadow border border-grey-light">
                 <div class="inline-flex flex-none">
-                    <div class="text-2xl pr-2 pt-2">{{ fit.basicSize }}</div>
+                    <div class="text-2xl pr-2 pt-2">{{ form.nennmass }}</div>
                     <div class="mr-4">
-                        <input class="border-b w-16" v-on:change="selectedHole = ''" v-model.number.lazy="fit.hole.upperDeviation" size="8"><br>
-                        <input class="border-b w-16" v-on:change="selectedHole = ''" v-model.number.lazy="fit.hole.lowerDeviation" size="8">
+                        <input class="border-b w-16" v-model.number.lazy="abmassBohrung.es" size="8"><br>
+                        <input class="border-b w-16" v-model.number.lazy="abmassBohrung.ei" size="8">
                     </div>
                 </div>
                 <div class="relative flex-auto">
-                    <select v-on:change="updateHole" v-model="selectedHole" class="block appearance-none border-b bg-white text-black w-full py-2 px-2 pr-8 rounded-none">
-                        <option v-for="(item, index) in isoTolerances.hole" v-bind:value="index">
-                            {{ index }}
+                    <select v-model="form.toleranzklasseBohrung" class="block appearance-none border-b bg-white text-black w-full py-2 px-2 pr-8 rounded-none">
+                        <option v-for="toleranzklasse in toleranzklassenBohrung" v-bind:value="toleranzklasse">
+                            {{ toleranzklasse }}
                         </option>
                     </select>
                     <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-black">
-                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                     </div>
                 </div>
             </div>
@@ -52,16 +52,16 @@
             <h2 class="mb-2 text-lg font-thin text-purple-dark">Welle</h2> 
             <div class="inline-flex w-full p-4 bg-white rounded shadow border border-grey-light">
                 <div class="inline-flex flex-none">
-                    <div class="text-2xl pr-2 pt-2">{{ fit.basicSize }}</div>
+                    <div class="text-2xl pr-2 pt-2">{{ form.nennmass }}</div>
                     <div class="mr-4">
-                        <input class="border-b w-16" v-on:change="selectedShaft = ''" v-model.number.lazy="fit.shaft.upperDeviation" size="8"><br>
-                        <input class="border-b w-16" v-on:change="selectedShaft = ''" v-model.number.lazy="fit.shaft.lowerDeviation" size="8">
+                        <input class="border-b w-16" v-model.number.lazy="abmassWelle.es" size="8"><br>
+                        <input class="border-b w-16" v-model.number.lazy="abmassWelle.ei" size="8">
                     </div>
                 </div>
                 <div class="relative flex-auto">
-                    <select v-on:change="updateShaft" v-model="selectedShaft" class="block appearance-none border-b bg-white text-black w-full py-2 px-2 pr-8 rounded-none">
-                        <option v-for="(item, index) in isoTolerances.shaft" v-bind:value="index">
-                            {{ index }}
+                    <select v-model="form.toleranzklasseWelle" class="block appearance-none border-b bg-white text-black w-full py-2 px-2 pr-8 rounded-none">
+                        <option v-for="toleranzklasse in toleranzklassenWelle" v-bind:value="toleranzklasse">
+                            {{ toleranzklasse }}
                         </option>
                     </select>
                     <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
@@ -77,8 +77,15 @@
         <div class="bg-grey-lighter mb-8 border-t border-b p-4">
             <div class="max-w-md px-4 mx-auto">
                 <div class="flex items-center">
-                    <fit-type class="p-4 mr-2 bg-white rounded shadow" :fit="fit" :fit-type="fitType" :max-diff="maxDiff" :min-diff="minDiff"></fit-type>
-                    <illustration class="" :fit="fit"></illustration>
+                    <div class="p-4 mr-2 bg-white rounded shadow">
+                        <div class="text-lg">{{passung.passungsart}}</div>
+                        <div class="text-sm text-grey-dark mb-4">Passungsart</div>
+                        <div class="text-lg">{{ passung.Po }} mm</div>
+                        <div class="text-sm text-grey-dark mb-4">Höchstpassung</div>
+                        <div class="text-lg">{{ passung.Pu }} mm</div>
+                        <div class="text-sm text-grey-dark">Mindestpassung</div>
+                    </div>
+                    <illustration :passung="passung"></illustration>
                 </div>
                 <div class="pt-4">
                     <button @click="saveFit" class="border border-purple-dark rounded p-2 text-purple-dark hover:bg-purple-dark hover:text-white">Passung merken</button>
