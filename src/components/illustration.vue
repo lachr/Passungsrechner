@@ -19,7 +19,7 @@
 
 <script>
     export default {
-        props: ['passung'],
+        props: ['abmassBohrung','abmassWelle'],
         data: function () {
             return {
                 height: 100,
@@ -27,31 +27,31 @@
             }
         },
         methods: {
-            getMaxDiff: function (a, b, c, d) {
-                return Math.max(a,b,c,d)-Math.min(a,b,c,d);
+            getMax: function (a, b, c, d) {
+                return Math.max(Math.abs(a),Math.abs(b),Math.abs(c),Math.abs(d));
             }
         },
         computed: {
             scale: function () {
-                var maxDiff = this.getMaxDiff(
-                    parseFloat(this.passung.GoB),
-                    parseFloat(this.passung.GuB),
-                    parseFloat(this.passung.GoW),
-                    parseFloat(this.passung.GuW)
+                var max = this.getMax(
+                    this.abmassBohrung.es,
+                    this.abmassBohrung.ei,
+                    this.abmassWelle.es,
+                    this.abmassWelle.ei
                 );
-                return 1+(this.height-(maxDiff))/(maxDiff);
+                return this.height/(2*max);
             },
             holeTopY: function () {
-                return Math.round(this.height/2-parseFloat(this.passung.GoB)*this.scale);
+                return Math.round(this.height/2-this.abmassBohrung.es*this.scale);
             },
             holeHeight: function () {
-                return Math.round((parseFloat(this.passung.GoB)-parseFloat(this.passung.GuB))*this.scale);
+                return Math.round((this.abmassBohrung.es-this.abmassBohrung.ei)*this.scale);
             },
             shaftTopY: function () {
-                return Math.round(this.height/2-parseFloat(this.passung.GoW)*this.scale);
+                return Math.round(this.height/2-this.abmassWelle.es*this.scale);
             },
             shaftHeight: function () {
-                return Math.round((parseFloat(this.passung.GoW)-parseFloat(this.passung.GuW))*this.scale);
+                return Math.round((this.abmassWelle.es-this.abmassWelle.ei)*this.scale);
             },
         }
     }

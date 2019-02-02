@@ -4,9 +4,9 @@ Vue.config.devtools = true
 import Passung from './components/Passung.js'
 import Toleranz from './components/Toleranz.js'
 
-Vue.component('illustration', require('./components/illustration'))
-Vue.component('savedFits', require('./components/savedFits'))
-Vue.component('selectFit', require('./components/selectFit'))
+Vue.component('illustration', require('./components/illustration.vue').default)
+Vue.component('savedFits', require('./components/savedFits.vue').default)
+Vue.component('selectFit', require('./components/selectFit.vue').default)
 
 // import isoTolerances from './tolerances.json'
 
