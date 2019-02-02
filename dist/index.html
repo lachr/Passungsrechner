@@ -22,7 +22,7 @@
                 <input v-model.number.lazy="form.nennmass" class="appearance-none block w-full text-black py-2 border-b px-2 pr-8">
                 <span class="absolute pin-y pin-r flex items-center px-2 mr-4 text-grey-darker">mm</span>
             </div>
-            <div class="p-4 border border-yellow bg-yellow-lighter round text-yellow-darker rounded shadow">Die Toleranzen sind nur bis zu einem Nennmass von 400mm definiert!</div>
+            <div v-show="form.nennmass <= 0 || form.nennmass >= 400" class="p-4 border border-yellow bg-yellow-lighter round text-yellow-darker rounded shadow">Die Toleranzen sind nur bis zu einem Nennmass von 400mm definiert!</div>
         </div>
 
         <div class="mb-8 px-4 max-w-md mx-auto">
@@ -31,8 +31,8 @@
                 <div class="inline-flex flex-none">
                     <div class="text-2xl pr-2 pt-2">{{ form.nennmass }}</div>
                     <div class="mr-4">
-                        <input class="border-b w-16" v-model.number.lazy="(abmassBohrung.es/1000).toFixed(3)" size="8"><br>
-                        <input class="border-b w-16" v-model.number.lazy="(abmassBohrung.ei/1000).toFixed(3)" size="8">
+                        {{ (abmassBohrung.es/1000).toFixed(3) }}<br>
+                        {{ (abmassBohrung.ei/1000).toFixed(3) }}
                     </div>
                 </div>
                 <div class="relative flex-auto">
@@ -54,8 +54,8 @@
                 <div class="inline-flex flex-none">
                     <div class="text-2xl pr-2 pt-2">{{ form.nennmass }}</div>
                     <div class="mr-4">
-                        <input class="border-b w-16" v-model.number.lazy="(abmassWelle.es/1000).toFixed(3)" size="8"><br>
-                        <input class="border-b w-16" v-model.number.lazy="(abmassWelle.ei/1000).toFixed(3)" size="8">
+                        {{ (abmassWelle.es/1000).toFixed(3) }}<br>
+                        {{ (abmassWelle.ei/1000).toFixed(3) }}
                     </div>
                 </div>
                 <div class="relative flex-auto">

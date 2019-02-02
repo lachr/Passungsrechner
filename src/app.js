@@ -3,6 +3,7 @@ Vue.config.devtools = true
 
 import Passung from './components/Passung.js'
 import Toleranz from './components/Toleranz.js'
+import { throws } from 'assert';
 
 Vue.component('illustration', require('./components/illustration.vue').default)
 Vue.component('savedFits', require('./components/savedFits.vue').default)
@@ -23,8 +24,8 @@ const app = new Vue({
     data: {
         form: {
             nennmass: 30.0,
-            toleranzklasseBohrung: 'H7',
-            toleranzklasseWelle: 'p6'
+            toleranzklasseBohrung: 'H8',
+            toleranzklasseWelle: 'f7'
         },
         savedFits: [],
         selectedHole: 'H8',
@@ -59,7 +60,20 @@ const app = new Vue({
         
         saveFit: function () {
             this.savedFits.push({
-                passung
+                passungstyp: this.passung.passungsart,
+                hoechstpassung: this.passung.Po,
+                mindestpassung: this.passung.Pu,
+                nennmass: this.form.nennmass,
+                bohrung :{
+                    tk: this.form.toleranzklasseBohrung,
+                    es: this.abmassBohrung.es,
+                    ei: this.abmassBohrung.ei
+                },
+                welle :{
+                    tk: this.form.toleranzklasseWelle,
+                    es: this.abmassWelle.es,
+                    ei: this.abmassWelle.ei
+                }
             });
         },
         deleteFit: function(fit) {
